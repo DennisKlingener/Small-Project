@@ -40,15 +40,10 @@ body
     margin-left: 15%;
     padding: 25px;
     background-color: #deb12a;
-    border-radius: 40%; /*Maybe make the welcome box a beach ball for an ocean theme?*/
+    border-radius: 40%; 
 }
 
-
-
-/* sign up page */
-
 #signupDiv {
-
     font-size: 40px;
     width: 70%;
     max-width: 50%;
@@ -103,9 +98,6 @@ body
     color: #009de4;
 }
 
-/*--------------------------------------------*/
-
-
 #loggedInDiv
 {
     font-size: 30px;
@@ -147,18 +139,12 @@ body
     opacity: 50%;
 }
 
-/* We can add cool anomations here if its not too extra! */
 .buttons2:hover {
     background-color: #00d5124f;
     color: #FFFFFF;
     opacity: 50%;
 }
 
-
-
-
-
-/*For modifying the username placeholder text*/
 #loginName::placeholder {
     color: #009de4;
 }
@@ -169,7 +155,6 @@ body
     border-radius: 0%;
 }
 
-/*For modifying the password placeholder text*/
 #loginPassword::placeholder {
     color: #009de4;
 }
@@ -184,6 +169,7 @@ body
 {
 	font-size: 30px;
 }
+
 #colorText
 {
 	font-size: 30px;
@@ -210,7 +196,6 @@ input[type="text"],input[type="password"]{
 }
 
 #signinLink {
-
     display: inline-block;
     font-size: 15px;
     width: 90%;
