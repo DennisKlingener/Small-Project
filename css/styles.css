@@ -48,28 +48,6 @@
     z-index: 0;
 }
 
-
-body 
-{
-    background-color: #009de4;
-    background-image: url('../images/fish.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-#title 
-{
-    font-size: 40px;
-    width: 100%;
-    margin-top: 5%;
-    text-align: center;
-    font-family: 'Ubuntu', sans-serif;
-    color: #ffffff;
-}
-
 #directoryDiv {
     font-size: 25px;
     color: #000000;
@@ -169,7 +147,7 @@ body
 
 #loginName
 {
-	font-size: 25px;
+    font-size: 25px;
     border-radius: 0%;
 }
 
@@ -179,18 +157,18 @@ body
 
 #loginPassword
 {
-	font-size: 25px;
+    font-size: 25px;
     border-radius: 0%;
 }
 
 #searchText
 {
-	font-size: 30px;
+    font-size: 30px;
 }
 
 #colorText
 {
-	font-size: 30px;
+    font-size: 30px;
 }
 
 input[type="text"],input[type="password"]{
@@ -345,7 +323,6 @@ select{
 
 /************END***********/
 /*************************/
-
 
 
 
