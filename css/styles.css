@@ -1,13 +1,29 @@
 body 
 {
-    background-color: #009de4;
+    /*background-color: #009de4;8
     background-image: url('../images/fish.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: hidden;*/
+    overflow: hidden;
+    margin: 0;
 }
+
+video {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    object-fit: cover; 
+    z-index: -1; 
+}
+
+
+
+
 
 #title 
 {
