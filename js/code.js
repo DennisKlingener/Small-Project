@@ -183,3 +183,21 @@ function searchColor()
 	}
 	
 }
+
+
+
+
+
+
+
+//------New------//
+
+function goToLoginPage() {
+	window.location.href = 'login.html';
+}
+
+
+function goToSignupPage() {
+	window.location.href = 'signUp.html';
+}
+
