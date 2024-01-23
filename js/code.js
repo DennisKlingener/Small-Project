@@ -191,6 +191,7 @@ function searchColor()
 
 
 //------New------//
+
 function goToGitHub() {
 	window.location.href = 'https://github.com/DennisKlingener/Small-Project.git';
 }
