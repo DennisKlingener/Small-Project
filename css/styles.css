@@ -2,7 +2,6 @@
 @font-face{
     font-family: 'adobeFont';
     src: url('fonts/bebas.ttf') format('truetype');
-    color: #000000;  
 }
 
 @font-face{
@@ -58,7 +57,7 @@
     margin-left: auto;
     margin-right: auto;
     opacity: 50%;
-    padding-left: auto;
+    padding-left: 20px;
 }
 
 
@@ -66,10 +65,13 @@
 .account-popup {
     display: none;
     position: fixed;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
     z-index: 9;
+    background: rgba(0, 0, 0, 0.56); 
+    backdrop-filter: blur(15px);
 }
 
 .popup-container {
@@ -77,10 +79,13 @@
     max-width: 300px;
     padding: 50px;
     background: transparent;
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(0,0,0,0.56);
     border-radius: 20px;
+    position: relative;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
 }
+
 
 .popup-container input[type=text], .popup-container input[type=password], 
 .popup-container input[type=email], .popup-container input[type=email]{
@@ -88,45 +93,45 @@
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
-    background: white;
-    opacity: 60%;
+    background: #f1f1f1;
 }
 
-.popup-container input[type=text]:focus, .popup-container input[type=password]:focus,
+.popup-container input[type=text]:focus, .popup-container input[type=password]:focus 
 .popup-container input[type=email]:focus, .popup-container input[type=email]:focus{
     background-color: #ddd;
     outline: none;
-    opacity: 60%;
 }
 
 .popup-container .btn {
     font-family: acumin, sans-serif;
     font-size: 13px;
-    color:#8BD2E9;
+    color:#000000;
     letter-spacing: 5px;
     border-radius: 0px;
-    background-color: black;
+    background-color: #A9EBEC;
 
     padding: 16px 20px;
     border: none;
     cursor: pointer;
     width: 100%;
     margin-bottom:10px;
-    opacity: 65%;
+    opacity: 0.8;
 }
 
 .popup-container .btn:hover {
-     opacity: 30%;
+    opacity: 50%;
 }
 
 .popup-container h1 {
     font-family: adobeFont, sans-serif;
-    color: black;
+    color: white;
     align-content: center;
     font-size: 50px;
-    opacity: 65%;
+    opacity: 50%;
     letter-spacing: 10px;
 }
+/*information block*/
+
 
 /*LOGGED IN*/
 #loggedInDiv
@@ -240,9 +245,9 @@ select{
 .content h1{
     font-family: adobeFont, sans-serif;
     padding-left: 110px;
-    font-size: 270px;
+    font-size: 220px;
     opacity: 50%;
-    letter-spacing: 120px;
+    letter-spacing: 100px;
 }
 
 .content h2{
@@ -261,40 +266,29 @@ select{
     border: none;
     border-radius: 0px;
     width: auto;
-    padding: 5px;
+    padding: 10px 15px;
     margin-bottom: 5px;
     background-color: #000000;
+    opacity: 0.8;
 }
 
 .buttons2 {
     font-family: acumin, sans-serif;
     font-size: 13px;
+    color: white;
     letter-spacing: 5px;
     border: none;
     border-radius: 0px;
     width: auto;
-    padding: 5px;
-    margin-bottom: 5px;
-    background-color: #A9EBEC;
+    padding: 10px 15px;
+    background-color: transparent;
+    opacity: 0.8;
 }
 
 .buttons:hover{
-    opacity: 30%;
+    opacity: 50%;
 }
 
 .buttons2:hover {
-    background-color: #000000;
-    color: #A9EBEC ;
+    opacity: 50%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
