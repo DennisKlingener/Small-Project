@@ -75,8 +75,11 @@
 .popup-container {
     text-align: center;
     max-width: 300px;
-    padding: 10px;
-    background-color: #8BD2E9;
+    padding: 50px;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(0,0,0,0.56);
+    border-radius: 20px;
 }
 
 .popup-container input[type=text], .popup-container input[type=password], 
@@ -124,7 +127,6 @@
     opacity: 65%;
     letter-spacing: 10px;
 }
-
 
 /*LOGGED IN*/
 #loggedInDiv
@@ -277,8 +279,7 @@ select{
 }
 
 .buttons:hover{
-    background-color: #A9EBEC;
-    color: #000000;
+    opacity: 30%;
 }
 
 .buttons2:hover {
