@@ -1,3 +1,4 @@
+/*Setting up fonts*/
 @font-face{
     font-family: 'adobeFont';
     src: url('fonts/bebas.ttf') format('truetype');
@@ -10,6 +11,7 @@
     color: #000000;  
 }
 
+/*Background + Alignment*/
 *{
     padding: 0;
     margin: 0;
@@ -59,70 +61,70 @@
     padding-left: 20px;
 }
 
-#loginDiv{
-    font-size: 40px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #deb12a;
-    border-radius: 40%; 
+
+/*Login or SignUp Popup*/
+.account-popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    z-index: 9;
 }
 
-#signupDiv {
-    font-size: 40px;
-    width: 70%;
-    max-width: 50%;
-    margin-left: 25%;
-    padding: 25px;
-    background-color: #deb12a;
-    border-radius: 40%; 
+.popup-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: black;
+    opacity: 60%;
 }
 
-#signupFirstName {
-    font-size: 25px;
-    border-radius: 0%;
+.popup-container input[type=text], .popup-container input[type=password], 
+.popup-container input[type=email], .popup-container input[type=email]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
 }
 
-#signupFirstName::placeholder {
-    color: #009de4;
+.popup-container input[type=text]:focus, .popup-container input[type=password]:focus 
+.popup-container input[type=email]:focus, .popup-container input[type=email]:focus{
+    background-color: #ddd;
+    outline: none;
 }
 
-#signupLastName {
-    font-size: 25px;
-    border-radius: 0%;
+.popup-container .btn {
+    font-family: acumin, sans-serif;
+    font-size: 13px;
+    color:#000000;
+    letter-spacing: 5px;
+    border-radius: 0px;
+    background-color: #A9EBEC;
+
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
 }
 
-#signupLastName::placeholder {
-    color: #009de4;
+.popup-container .btn:hover {
+    background-color: #000000;
+    color: #A9EBEC ;
 }
 
-#signupUserName {
-    font-size: 25px;
-    border-radius: 0%;
+.popup-container h1 {
+    font-family: adobeFont, sans-serif;
+    color: white;
+    align-content: center;
+    font-size: 50px;
+    opacity: 50%;
+    letter-spacing: 10px;
 }
 
-#signupUserName::placeholder {
-    color: #009de4;
-}
 
-#signupPassword {
-    font-size: 25px;
-    border-radius: 0%;
-}
-
-#signupPassword::placeholder {
-    color: #009de4;
-}
-
-#signupPasswordRetype {
-    font-size: 25px;
-    border-radius: 0%;
-}
-
-#signupPasswordRetype::placeholder {
-    color: #009de4;
-}
-
+/*LOGGED IN*/
 #loggedInDiv
 {
     font-size: 30px;
@@ -141,46 +143,8 @@
     background-color: #b2b2b2;
 }
 
-#loginName::placeholder {
-    color: #009de4;
-}
-
-#loginName
-{
-    font-size: 25px;
-    border-radius: 0%;
-}
-
-#loginPassword::placeholder {
-    color: #009de4;
-}
-
-#loginPassword
-{
-    font-size: 25px;
-    border-radius: 0%;
-}
-
-#searchText
-{
-    font-size: 30px;
-}
-
-#colorText
-{
-    font-size: 30px;
-}
-
-input[type="text"],input[type="password"]{
-    border-radius: 25px;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-}
-
 #inner-title{
+    padding-top: 105px;
     display: inline-block;
     font-size: 0.8em;
     width: 90%;
@@ -256,9 +220,9 @@ select{
     color: #95060a;
 }
 
-/*************************/
-/* INDEX PAGE EXCLUSIVE */
 
+
+/*"The Reef" content*/
 .container-index{
     align-items: center;
     justify-content: center;
@@ -290,8 +254,8 @@ select{
     font-size: 13px;
     color:#A9EBEC;
     letter-spacing: 5px;
+    border: none;
     border-radius: 0px;
-    border-color: #000000;
     width: auto;
     padding: 5px;
     margin-bottom: 5px;
@@ -302,8 +266,8 @@ select{
     font-family: acumin, sans-serif;
     font-size: 13px;
     letter-spacing: 5px;
+    border: none;
     border-radius: 0px;
-    border-color: #A9EBEC;
     width: auto;
     padding: 5px;
     margin-bottom: 5px;
@@ -319,15 +283,3 @@ select{
     background-color: #000000;
     color: #A9EBEC ;
 }
-
-
-/************END***********/
-/*************************/
-
-
-
-
-
-
-
-
