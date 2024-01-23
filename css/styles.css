@@ -58,7 +58,7 @@
     margin-left: auto;
     margin-right: auto;
     opacity: 50%;
-    padding-left: 20px;
+    padding-left: auto;
 }
 
 
@@ -66,16 +66,17 @@
 .account-popup {
     display: none;
     position: fixed;
-    bottom: 0;
-    right: 15px;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
     z-index: 9;
 }
 
 .popup-container {
+    text-align: center;
     max-width: 300px;
     padding: 10px;
-    background-color: black;
-    opacity: 60%;
+    background-color: #8BD2E9;
 }
 
 .popup-container input[type=text], .popup-container input[type=password], 
@@ -84,42 +85,43 @@
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
-    background: #f1f1f1;
+    background: white;
+    opacity: 60%;
 }
 
-.popup-container input[type=text]:focus, .popup-container input[type=password]:focus 
+.popup-container input[type=text]:focus, .popup-container input[type=password]:focus,
 .popup-container input[type=email]:focus, .popup-container input[type=email]:focus{
     background-color: #ddd;
     outline: none;
+    opacity: 60%;
 }
 
 .popup-container .btn {
     font-family: acumin, sans-serif;
     font-size: 13px;
-    color:#000000;
+    color:#8BD2E9;
     letter-spacing: 5px;
     border-radius: 0px;
-    background-color: #A9EBEC;
+    background-color: black;
 
     padding: 16px 20px;
     border: none;
     cursor: pointer;
     width: 100%;
     margin-bottom:10px;
-    opacity: 0.8;
+    opacity: 65%;
 }
 
 .popup-container .btn:hover {
-    background-color: #000000;
-    color: #A9EBEC ;
+     opacity: 30%;
 }
 
 .popup-container h1 {
     font-family: adobeFont, sans-serif;
-    color: white;
+    color: black;
     align-content: center;
     font-size: 50px;
-    opacity: 50%;
+    opacity: 65%;
     letter-spacing: 10px;
 }
 
@@ -236,9 +238,9 @@ select{
 .content h1{
     font-family: adobeFont, sans-serif;
     padding-left: 110px;
-    font-size: 220px;
+    font-size: 270px;
     opacity: 50%;
-    letter-spacing: 100px;
+    letter-spacing: 120px;
 }
 
 .content h2{
@@ -283,3 +285,15 @@ select{
     background-color: #000000;
     color: #A9EBEC ;
 }
+
+
+
+
+
+
+
+
+
+
+
+
