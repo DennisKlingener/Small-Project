@@ -191,13 +191,34 @@ function searchColor()
 
 
 //------New------//
-
-function goToLoginPage() {
-	window.location.href = 'login.html';
+function goToGitHub() {
+	window.location.href = 'https://github.com/DennisKlingener/Small-Project.git';
 }
 
+function checkPassword() {
+    var input = document.getElementById('psw');
+    if (input.value != document.getElementById('repsw').value) {
+        input.setCustomValidity('Password Must be Matching.');
+    } else {
+        input.setCustomValidity('');
+    }
+}
 
-function goToSignupPage() {
-	window.location.href = 'signUp.html';
+function openLoginBox() {
+  document.getElementById("loginPopUp").style.display = "block";
+  closeSignUpBox();
+}
+
+function closeLoginBox() {
+  document.getElementById("loginPopUp").style.display = "none";
+}
+
+function openSignUpBox() {
+  document.getElementById("signUpPopUp").style.display = "block";
+  closeLoginBox();
+}
+
+function closeSignUpBox() {
+  document.getElementById("signUpPopUp").style.display = "none";
 }
 
