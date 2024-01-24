@@ -320,22 +320,6 @@ select{
 
 /*------Contacts Page------*/
 
-#contactsContainer {
-    background-color: rgb(46, 46, 46);
-    margin: 60px;
-    height: calc(100vh - 120px);
-
-}
-
-#leftSideDiv {
-    position: absolute;
-    background-color: #95060b8c;
-    width: 25%;
-    height: calc(100vh - 160px);
-    margin: 20px;
-}
-
-/*we can combine this with the "leftsidediv"*/
 .contactsList {
     height: 200px;
     overflow-y: auto;
@@ -363,8 +347,27 @@ select{
     border-radius: 100px;
 }
 
-#contactsBody {
-    overflow: hidden;
+#deleteButton {
+    position: absolute;
+    margin-top: calc(100vh - 180px - 30px);
+    margin-left: calc(100vw - 360px - 25% - 50px);
+}
+
+#editButton {
+    position: absolute;
+    margin-top: calc(100vh - 180px - 30px);
+    margin-left: calc(100vw - 360px - 25% - 140px);
+}
+
+#newButton {
+    position: absolute;
+    margin-top: calc(100vh - 180px - 30px);
+    margin-left: calc(100vw - 360px - 25% - 1230px);
+}
+
+.contactPageButtons {
+    height: 40px;
+    width: 80px;
 }
 
 
