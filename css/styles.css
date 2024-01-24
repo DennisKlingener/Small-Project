@@ -314,14 +314,57 @@ select{
 
 }
 
-#loginName {
 
-	color: red;
+
+
+
+/*------Contacts Page------*/
+
+#contactsContainer {
+    background-color: rgb(46, 46, 46);
+    margin: 60px;
+    height: calc(100vh - 120px);
 
 }
 
-#loginPassword {
-	color: blue;
+#leftSideDiv {
+    position: absolute;
+    background-color: #95060b8c;
+    width: 25%;
+    height: calc(100vh - 160px);
+    margin: 20px;
+}
+
+/*we can combine this with the "leftsidediv"*/
+.contactsList {
+    height: 200px;
+    overflow-y: auto;
+}
+
+#rightSideDiv {
+    position: absolute;
+    background-color: #9dd41262;
+    margin-top: 20px;
+    margin-left: calc(25% + 20px);
+    width: calc(100vw - 160px - 25%);
+    height: calc(100vh - 160px);
+}
+
+#searchBar {
+    display: block;
+    background-color: #2f00ff5a;
+    text-align: left;
+    height: 40px;
+    width: 350px;
+    margin-top: 5%;
+    margin-left: auto;  
+    margin-right: auto;  
+    border-style: solid;
+    border-radius: 100px;
+}
+
+#contactsBody {
+    overflow: hidden;
 }
 
 
