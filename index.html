@@ -32,18 +32,18 @@
 	</div>
 
 	<div class="account-popup" id="loginPopUp">
-	  <form action="/action_page.php" class="popup-container">
+	  <form action="LAMPAPI/Login.php" method="post" class="popup-container">
 		    <h1>Login</h1>
 
-		    <input type="text" placeholder="Enter Username" name="username" required>
-		    <input type="password" placeholder="Enter Password" name="psw" required>
+		    <input id="loginName" type="text" placeholder="Enter Username" required>
+		    <input id="loginPassword" type="password" placeholder="Enter Password" name="psw" required>
 
 		    <div class ="sign-or-login">
 		    	<p>Don't have an account yet?</p>
 		    	<button type= "button" class= "buttons2" onclick="openSignUpBox()">Sign Up</button>
 		    </div>
 
-		    <button type= "submit" class="btn">LOGIN</button>
+		    <button type= "submit" class="btn" onclick="doLogin()">LOGIN</button>
 		    <button type= "button" class= "btn cancel" onclick="closeLoginBox()">CLOSE</button>
 
 	  </form>
@@ -74,3 +74,4 @@
 </body>
 
 </html>
+
