@@ -38,6 +38,11 @@
 		    <input type="email" placeholder="Enter Email" name="email" required>
 		    <input type="password" placeholder="Enter Password" name="psw" required>
 
+		    <div class ="sign-or-login">
+		    	<p>Don't have an account yet?</p>
+		    	<button type= "button" class= "buttons2" onclick="openSignUpBox()">Sign Up</button>
+		    </div>
+
 		    <button type= "submit" class="btn">LOGIN</button>
 		    <button type= "button" class= "btn cancel" onclick="closeLoginBox()">CLOSE</button>
 
@@ -53,6 +58,12 @@
 		    <input type="email" placeholder="Enter Email" name="email" required>
 		    <input type="password" placeholder="Enter Password" name="psw" id= "psw" required oninput="checkPassword()">
 		    <input type="password" placeholder="Confirm Password" name="repsw" id= "repsw" required oninput="checkPassword()">
+
+		    <div class ="sign-or-login">
+		    	<p>Got an account already?</p>
+		    	<button type= "button" class= "buttons2" onclick="openLoginBox()">Login</button>
+		    </div>
+		
 
 		    <button type= "submit" class="btn">SIGN UP</button>
 		    <button type= "button" class= "btn cancel" onclick="closeSignUpBox()">CLOSE</button>
