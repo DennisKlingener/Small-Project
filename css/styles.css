@@ -130,7 +130,27 @@
     opacity: 50%;
     letter-spacing: 10px;
 }
-/*information block*/
+
+/*Other Options Little Note*/
+.sign-or-login {
+    font-family: acumin;
+    color: yellow;
+    opacity: 0.5;
+    font-size: 12px;
+    padding: 0px;
+    display: inline-block;
+    letter-spacing: 0px;
+}
+
+.sign-or-login .buttons2{
+    color: yellow;
+    font-size: 12px;
+    letter-spacing: 0px;
+    padding: 0px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
 
 
 /*LOGGED IN*/
