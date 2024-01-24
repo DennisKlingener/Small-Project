@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="account-popup" id="loginPopUp">
-	  <form action="LAMPAPI/Login.php" method="post" class="popup-container">
+	  <div class="popup-container">
 		    <h1>Login</h1>
 
 		    <input id="loginName" type="text" placeholder="Enter Username" required>
@@ -46,11 +46,11 @@
 		    <button type= "submit" class="btn" onclick="doLogin()">LOGIN</button>
 		    <button type= "button" class= "btn cancel" onclick="closeLoginBox()">CLOSE</button>
 
-	  </form>
+	  </div>
 	</div>
 
 	<div class="account-popup" id="signUpPopUp">
-	  <form action="/action_page.php" class="popup-container">
+	  <div class="popup-container">
 		    <h1>Sign Up</h1>
 
 		    <input type="text" placeholder="First Name" name="firstName" required>
@@ -68,7 +68,7 @@
 		    <button type= "submit" class="btn">SIGN UP</button>
 		    <button type= "button" class= "btn cancel" onclick="closeSignUpBox()">CLOSE</button>
 
-	  </form>
+	  </div>
 	</div>
 
 </body>
