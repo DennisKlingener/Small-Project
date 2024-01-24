@@ -1,4 +1,4 @@
-const urlBase = 'http://138.197.46.31/LAMPAPI';
+const urlBase = 'http://techdeckers/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -222,4 +222,3 @@ function openSignUpBox() {
 function closeSignUpBox() {
   document.getElementById("signUpPopUp").style.display = "none";
 }
-
