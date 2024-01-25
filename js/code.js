@@ -184,44 +184,38 @@ function searchColor()
 
 }
 
-function addUser()
-{
-        let registerLogin = document.getElementById("newUsername");
-        let registerPassword = document.getElementById("newPassword");
-        let newFirstName = document.getElementById("firstName");
-        let newLastName = document.getElementById("lastName");
-                document.getElementById("userAddResult").innerHTML = "";
 
-        // var newUser = {
-        //         login : registerUsername,
-        //         password: registerPassword
-        // }
-        // console.log(newUser)
 
-                let tmp = {newUser:userId,newFirstName, newLastName, registerLogin, registerPassword};
-                let jsonPayload = JSON.stringify( tmp );
+function addUser() {
+    let registerLogin = document.getElementById("newUsername").value;
+    let registerPassword = document.getElementById("newPassword").value;
+    let newFirstName = document.getElementById("firstName").value;
+    let newLastName = document.getElementById("lastName").value;
+    document.getElementById("userAddResult").innerHTML = "";
 
-                let url = urlBase + '/AddUser.' + extension;
+    let tmp = {
+        firstName: newFirstName,
+        lastName: newLastName,
+        Login: registerLogin,
+        Password: registerPassword
+    };
+    let jsonPayload = JSON.stringify(tmp);
 
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST", url, true);
-                xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-                try
-        {
-                xhr.onreadystatechange = function()
-                {
-                        if (this.readyState == 4 && this.status == 200)
-                        {
-                                document.getElementById("userAddResult").innerHTML = "User has been added";
-                        }
-                };
-                xhr.send(jsonPayload);
-        }
-        catch(err)
-        {
-                document.getElementById("userAddResult").innerHTML = err.message;
-        }
+    let url = urlBase + '/AddUser.' + extension;
 
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("userAddResult").innerHTML = "User has been added";
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("userAddResult").innerHTML = err.message;
+    }
 }
 
 
