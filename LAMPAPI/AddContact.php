@@ -17,10 +17,10 @@
         else
         {
                 $stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, Phone, Email,UserID) VALUES(?, ?, ?, ?,?)");
-                $stmt->bind_param("sssss", $firstName, $lastName, $Phone, $Email, $UserIDq);
+                $stmt->bind_param("sssss", $firstName, $lastName, $Phone, $Email, $UserID);
                 if($stmt->execute())
         {
-            echo json_encode(["message" => "New Record was created"]);
+            echo json_encode(["message" => "New Contact Record was created"]);
         }
         else
         {
