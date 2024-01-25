@@ -350,25 +350,26 @@ select{
 #deleteButton {
     position: absolute;
     margin-top: calc(100vh - 180px - 30px);
-    margin-left: calc(100vw - 360px - 25% - 50px);
+    margin-left: calc(100vw - 360px - 25% - 20px);
 }
 
 #editButton {
     position: absolute;
     margin-top: calc(100vh - 180px - 30px);
-    margin-left: calc(100vw - 360px - 25% - 140px);
+    margin-left: calc(100vw - 360px - 25% - 110px);
 }
 
 #newButton {
     position: absolute;
     margin-top: calc(100vh - 180px - 30px);
-    margin-left: calc(100vw - 360px - 25% - 1230px);
+    margin-left: calc(100vw - 360px - 25% - 840px);
 }
 
 .contactPageButtons {
     height: 40px;
     width: 80px;
 }
+
 
 
 
