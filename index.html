@@ -1,75 +1,76 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang = "en">
 <head>
-	<title>COP 4331 LAMP Stack Project</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE-edge">
-	<meta name= "viewport" content= "width-device-width, initial-scale-1.0">
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <title>COP 4331 LAMP Stack Project</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name= "viewport" content= "width-device-width, initial-scale-1.0">
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 
 <body>
-	<div class= "container-index">
-		<video autoplay loop muted class= "background-video">
-			<source src= "images/OCEAN LOOP.mp4" type="video/mp4">
-		</video>
+        <div class= "container-index">
+                <video autoplay loop muted class= "background-video">
+                        <source src= "images/OCEAN LOOP.mp4" type="video/mp4">
+                </video>
 
-		<img src="images/square.PNG" class= "centered-square">
+                <img src="images/square.PNG" class= "centered-square">
 
-		<div class= "content">
-			<h2>THE</h2>
-			<h1>REEF</h1>
-		</div>
-		
-		<div id="directoryDiv">
-			<button class="buttons" onclick="openLoginBox()">LOGIN</button><br>
-			<button class="buttons" onclick="openSignUpBox()">SIGN UP</button><br>
-			<button class="buttons2" onclick="goToGitHub()">GIT HUB</button><br>
-		</div>
-	</div>
+                <div class= "content">
+                        <h2>THE</h2>
+                        <h1>REEF</h1>
+                </div>
 
-	<div class="account-popup" id="loginPopUp">
-	  <div class="popup-container">
-		    <h1>Login</h1>
+                <div id="directoryDiv">
+                        <button class="buttons" onclick="openLoginBox()">LOGIN</button><br>
+                        <button class="buttons" onclick="openSignUpBox()">SIGN UP</button><br>
+                        <button class="buttons2" onclick="goToGitHub()">GIT HUB</button><br>
+                </div>
+        </div>
 
-		    <input id="loginName" type="text" placeholder="Enter Username" required>
-		    <input id="loginPassword" type="password" placeholder="Enter Password" name="psw" required>
+        <div class="account-popup" id="loginPopUp">
+          <div class="popup-container">
+                    <h1>Login</h1>
 
-		    <div class ="sign-or-login">
-		    	<p>Don't have an account yet?</p>
-		    	<button type= "button" class= "buttons2" onclick="openSignUpBox()">Sign Up</button>
-		    </div>
+                    <input id="loginName" type="text" placeholder="Enter Username" required>
+                    <input id="loginPassword" type="password" placeholder="Enter Password" name="psw" required>
 
-		    <button type= "submit" class="btn" onclick="doLogin()">LOGIN</button>
-		    <button type= "button" class= "btn cancel" onclick="closeLoginBox()">CLOSE</button>
+                    <div class ="sign-or-login">
+                        <p>Don't have an account yet?</p>
+                        <button type= "button" class= "buttons2" onclick="openSignUpBox()">Sign Up</button>
+                    </div>
 
-	  </div>
-	</div>
+                    <button type= "submit" class="btn" onclick="doLogin()">LOGIN</button>
+                    <button type= "button" class= "btn cancel" onclick="closeLoginBox()">CLOSE</button>
 
-	<div class="account-popup" id="signUpPopUp">
-	  <div class="popup-container">
-		    <h1>Sign Up</h1>
+          </div>
+        </div>
 
-		    <input type="text" placeholder="First Name" name="firstName" required>
-		    <input type="text" placeholder="Last Name" name ="lastName" required>
-		    <input type="text" placeholder="Enter Username" name="username" required>
-		    <input type="password" placeholder="Enter Password" name="psw" id= "psw" required oninput="checkPassword()">
-		    <input type="password" placeholder="Confirm Password" name="repsw" id= "repsw" required oninput="checkPassword()">
+        <div class="account-popup" id="signUpPopUp">
+          <div class="popup-container">
+                    <h1>Sign Up</h1>
 
-		    <div class ="sign-or-login">
-		    	<p>Got an account already?</p>
-		    	<button type= "button" class= "buttons2" onclick="openLoginBox()">Login</button>
-		    </div>
-		
+                    <input id = "firstName"  type="text" placeholder="First Name" name="firstName" required>
+                    <input id= "lastName"  type="text" placeholder="Last Name" name ="lastName" required>
+                    <input id= "newUsername"  type="text" placeholder="Enter Username" name="username" required>
+                    <input  type="password" placeholder="Enter Password" name="psw" id= "psw" required oninput="checkPassword()">
+                    <input id = "newPassword"  type="password" placeholder="Confirm Password" name="repsw" id= "repsw" required oninput="checkPassword()">
 
-		    <button type= "submit" class="btn">SIGN UP</button>
-		    <button type= "button" class= "btn cancel" onclick="closeSignUpBox()">CLOSE</button>
+                    <div class ="sign-or-login">
+                        <p>Got an account already?</p>
+                        <button type= "button" class= "buttons2" onclick="openLoginBox()">Login</button>
+                    </div>
 
-	  </div>
-	</div>
+
+                    <button type= "submit" class="btn" onclick="addUser()">SIGN UP</button>
+                     <span id="userAddResult"></span>
+                    <button type= "button" class= "btn cancel" onclick="closeSignUpBox()">CLOSE</button>
+
+          </div>
+        </div>
 
 </body>
 
