@@ -7,7 +7,6 @@
 @font-face{
     font-family: acumin;
     src: url('fonts/Acumin-BdPro.otf') format('opentype');
-    color: #000000;  
 }
 
 /*Background + Alignment*/
@@ -311,7 +310,6 @@ select{
 
 .buttons2:hover {
     opacity: 50%;
-
 }
 
 
@@ -319,7 +317,29 @@ select{
 
 
 /*------Contacts Page------*/
+#contactsBody {
+    overflow: hidden;
+}
 
+#contactsContainer {
+    background-color: transparent;
+    margin: 60px;
+    height: calc(100vh - 160px);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;   
+}
+
+#leftSideDiv {
+    position: absolute;
+    background-color: black;
+    opacity: 40%;
+    width: 25%;
+    height: calc(100vh - 160px);
+    margin: 20px;
+    border-radius: 7px;
+}
+
+/*we can combine this with the "leftsidediv"*/
 .contactsList {
     height: 200px;
     overflow-y: auto;
@@ -327,42 +347,66 @@ select{
 
 #rightSideDiv {
     position: absolute;
-    background-color: #9dd41262;
+    background-color: black;
+    max-width: calc(100vw - 160px - 25%);
+    max-height: calc(100vh - 160px);
     margin-top: 20px;
     margin-left: calc(25% + 20px);
     width: calc(100vw - 160px - 25%);
     height: calc(100vh - 160px);
+    border-radius: 7px;
+    opacity: 60%;
 }
 
 #searchBar {
     display: block;
-    background-color: #2f00ff5a;
+    background-color: black;
     text-align: left;
     height: 40px;
-    width: 350px;
+    width: 310px;
     margin-top: 5%;
     margin-left: auto;  
     margin-right: auto;  
     border-style: solid;
-    border-radius: 100px;
+    border-radius: 7px;
+    border-width: thin thin thin thin;
+    color: white;
 }
 
+
 #deleteButton {
+    background-color: #424245;
     position: absolute;
-    margin-top: calc(100vh - 180px - 30px);
-    margin-left: calc(100vw - 360px - 25% - 20px);
+    margin-top: calc(100vh - 180px - 40px);
+    margin-left: calc(100vw - 360px - 25% + 10px);
+    border-radius: 7px;
+    opacity: 70%;
+    border: none;
+    color: white;
 }
 
 #editButton {
+    font-family: acumin, sans-serif;
+    background-color: #424245;
     position: absolute;
-    margin-top: calc(100vh - 180px - 30px);
-    margin-left: calc(100vw - 360px - 25% - 110px);
+    border-radius: 7px;
+    margin-top: calc(100vh - 180px - 40px);
+    margin-left: calc(100vw - 360px - 25% - 80px);
+    opacity: 70%;
+    border: none;
+    color: white;
 }
 
 #newButton {
+    background-color: #424245;
     position: absolute;
-    margin-top: calc(100vh - 180px - 30px);
-    margin-left: calc(100vw - 360px - 25% - 840px);
+    border-radius: 7px;
+    margin-top: calc(100vh - 180px - 40px);
+    margin-left: calc(100vw - 360px - 25% - 825px);
+    opacity: 70%;
+    border: none;
+    color: white;
+    top: ;
 }
 
 .contactPageButtons {
@@ -370,7 +414,39 @@ select{
     width: 80px;
 }
 
+.profileIcon{
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 25px;
+    color: white;
+    line-height: 80px;
+    text-align: center;
+    background-color: #424245;
+    opacity: 70%;
+    font-family: acumin;
+    margin-top: 7%;
+    margin-left: 33%;
+}
 
+.fullName{
+    position: fixed;
+    align-content: center;
+    margin-top: 15%;
+    margin-left: 31%;
+    font-size: 20px;
+    font-family: acumin;
+    text-align: center;
+    color: white;
+}
 
+.contactInformation{
+    position: fixed;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
 
-
+}
