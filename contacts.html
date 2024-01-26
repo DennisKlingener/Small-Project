@@ -9,6 +9,8 @@
 	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body id="contactsBody">
@@ -17,32 +19,73 @@
         <source src= "images/OCEAN LOOP.mp4" type="video/mp4">
     </video>
 
-
 	<!--contacts container-->
 	<div id="contactsContainer">
 		
-		<!--left side (red)-->
-		<div id="leftSideDiv">
+		<!--left side-->
+		<div id="leftSideDiv" class="contactsList">
 
 			<input type="search" id="searchBar" placeholder="  Search...">
+
 			
+
 		</div>
 
-		<!--right side (green)-->
+
+
+		<!--right side-->
 		<div id="rightSideDiv">
 
+
+
 			<!-- This is where the slected contact info will be displayed-->
-			<div>
+			<div class= "rightSideDiv">
+				<p id="contactInitials" class="profileIcon">GS</p>
+				<p id="contactFullName" class="fullName">Giullya Santos</p>
+
+
 			</div>
 
-			<button type="button" id="deleteButton" class="contactPageButtons">Delete</button>
+
+			<button type="button" id="deleteButton" class="contactPageButtons"><i class="fa fa-trash"></i></button>
 			<button type="button" id="editButton" class="contactPageButtons">Edit</button>
-			<button type="button" id="newButton" class="contactPageButtons" onclick="addContacts()">New</button>
-				<span id="contactAddResult"></span>
+			<button type="button" id="newButton" onclick="addContacts()" class="contactPageButtons"><i class="fa fa-plus"></i></button>
+			<span id="contactAddResult"></span>
+
+
+
+
 
 		</div>
+
 	</div>
+
 </body>
 </html>
 
 
+
+<!-- OLD VERSION.
+	<div id="leftSideDiv" class="contactsList">
+
+		<input type="search" id="searchBar" placeholder="  Search...">
+
+
+		
+		
+
+
+
+	</div>
+    
+	<div id="rightSideDiv">
+		placeholder
+
+
+
+
+
+
+
+
+	</div>
