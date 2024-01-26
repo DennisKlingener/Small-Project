@@ -1,5 +1,6 @@
 <?php
     $inData = getRequestInfo();
+    $ID = $inData["ID"];
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
     $Phone = $inData["Phone"];
@@ -16,8 +17,8 @@
     else
     {
         // Use UPDATE query with Email as the condition
-        $stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=? WHERE Email=?");
-        $stmt->bind_param("ssss", $firstName, $lastName, $Phone, $Email);
+        $stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE ID=?");
+        $stmt->bind_param("sssss", $firstName, $lastName, $Phone, $Email,$ID);
 
         if($stmt->execute())
         {
