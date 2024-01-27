@@ -334,3 +334,11 @@ function openSignUpBox() {
 function closeSignUpBox() {
   document.getElementById("signUpPopUp").style.display = "none";
 }
+
+function openNewContactBox() {
+        document.getElementById("newContact").style.display = "block"
+}
+
+
+
+
