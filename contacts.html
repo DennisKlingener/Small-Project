@@ -49,7 +49,7 @@
 
 			<button type="button" id="deleteButton" class="contactPageButtons"><i class="fa fa-trash"></i></button>
 			<button type="button" id="editButton" class="contactPageButtons">Edit</button>
-			<button type="button" id="newButton" onclick="addContacts()" class="contactPageButtons"><i class="fa fa-plus"></i></button>
+			<button type="button" id="newButton" onclick="openNewContactBox()" class="contactPageButtons"><i class="fa fa-plus"></i></button>
 			<span id="contactAddResult"></span>
 
 
@@ -58,34 +58,23 @@
 
 		</div>
 
-	</div>
+		<!--Create new user pop up-->
+		<div id="newContact">
+			<input type="text" id="firstName" placeholder="First Name"><br/>
+			<input type="text" id="lastName" placeholder="Lase Name"><br/>
+			<input type="text" id="newEmail" placeholder="Email"><br/>
+			<input type="text" id="newNumber" placeholder="Phone Number"><br/>
+			<button type="submit" onclick="addContacts()">submit</button>
+		</div>
 
+
+
+
+
+
+
+	</div>
 </body>
 </html>
 
 
-
-<!-- OLD VERSION.
-	<div id="leftSideDiv" class="contactsList">
-
-		<input type="search" id="searchBar" placeholder="  Search...">
-
-
-		
-		
-
-
-
-	</div>
-    
-	<div id="rightSideDiv">
-		placeholder
-
-
-
-
-
-
-
-
-	</div>
