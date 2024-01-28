@@ -279,3 +279,22 @@ function openNewContactBox() {
     document.getElementById("newContact").style.display = "block";
 }
 
+function closeNewContactBox() {
+        document.getElementById("newContactPopup").style.display = "none";
+}
+
+// Used with closeNewContactBox().
+function clearNewContactFields() {
+
+        // Get the input fields.
+        var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var newEmail = document.getElementById("newEmail");
+        var newNumber = document.getElementById("newNumber");
+
+        // Clear them.
+        firstName.value = '';
+        lastName.value = '';
+        newEmail.value = '';
+        newNumber.value = '';
+}
