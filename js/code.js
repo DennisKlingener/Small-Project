@@ -298,3 +298,7 @@ function clearNewContactFields() {
         newEmail.value = '';
         newNumber.value = '';
 }
+function toggleButton() {
+    var button = document.getElementById("contactInfoButton");
+    button.classList.toggle("clicked");
+}
