@@ -15,7 +15,7 @@
         {
                 $stmt = $conn->prepare("DELETE FROM Contacts WHERE FirstName = ? AND LastName = ?");
                 $stmt->bind_param("ss", $firstName, $lastName);
-                if($stmt->execute());
+                if($stmt->execute())
                 {
                   echo json_encode(["message" => "Contact Record was deleted"]);
                 }
