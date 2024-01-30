@@ -140,8 +140,8 @@ function searchColor() {
 function addUser() {
     let registerLogin = document.getElementById("newUsername").value;
     let registerPassword = document.getElementById("newPassword").value;
-    let newFirstName = document.getElementById("firstName").value;
-    let newLastName = document.getElementById("lastName").value;
+    let newFirstName = document.getElementById("newFirstName").value;
+    let newLastName = document.getElementById("newLastName").value;
     document.getElementById("userAddResult").innerHTML = "";
 
     let tmp = {
@@ -171,8 +171,8 @@ function addUser() {
 }
 
 function addContacts() {
-    let newFirstName = document.getElementById("firstName").value;
-    let newLastName = document.getElementById("lastName").value;
+    let newFirstName = document.getElementById("newFirstName").value;
+    let newLastName = document.getElementById("newLastName").value;
     let newEmail = document.getElementById("newEmail").value;
     let newNumber = document.getElementById("newNumber").value;
     document.getElementById("contactAddResult").innerHTML = "";
@@ -287,14 +287,14 @@ function closeNewContactBox() {
 function clearNewContactFields() {
 
         // Get the input fields.
-        var firstName = document.getElementById("firstName");
-        var lastName = document.getElementById("lastName");
+        var firstName = document.getElementById("newFirstName");
+        var lastName = document.getElementById("newLastName");
         var newEmail = document.getElementById("newEmail");
         var newNumber = document.getElementById("newNumber");
 
         // Clear them.
-        firstName.value = '';
-        lastName.value = '';
+        newFirstName.value = '';
+        newLastName.value = '';
         newEmail.value = '';
         newNumber.value = '';
 }
