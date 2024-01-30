@@ -542,7 +542,6 @@ select{
     color: black;
     opacity: 40%;
 }
-
 #newContactPopup {
     position: absolute;
     display: none;
@@ -555,9 +554,9 @@ select{
     padding-top: 15.5%;
 }
 
-#firstName {
+#firstNameAdd {
     position: relative;
-    text-align: center;
+    text-align: left;
     width: 200px;
     height: 35px;
     margin-top: 10px;
@@ -566,9 +565,9 @@ select{
 
 }
 
-#lastName {
+#lastNameAdd {
     position: relative;
-    text-align: center;
+    text-align: left;
     color: #000000;
     width: 200px;
     height: 35px;
