@@ -276,11 +276,11 @@ function closeSignUpBox() {
 }
 
 function openNewContactBox() {
-    document.getElementById("newContact").style.display = "block";
+    document.getElementById("newContactPopup").style.display = "block";
 }
 
 function closeNewContactBox() {
-        document.getElementById("newContactPopup").style.display = "none";
+    document.getElementById("newContactPopup").style.display = "none";
 }
 
 // Used with closeNewContactBox().
