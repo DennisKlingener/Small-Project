@@ -7,10 +7,9 @@
 	<meta name= "viewport" content= "width-device-width, initial-scale-1.0">
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
+    	<link href="css/styles.css" rel="stylesheet">	
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
 <body id="contactsBody">
@@ -24,56 +23,41 @@
 		
 		<!--left side-->
 		<div id="leftSideDiv" class="contactsList">
-
+	
 			<input type="search" id="searchBar" placeholder="  Search...">
-
 			
-
 		</div>
-
-
 
 		<!--right side-->
 		<div id="rightSideDiv">
 
-
-
 			<!-- This is where the slected contact info will be displayed-->
 			<div class= "rightSideDiv">
+				
 				<p id="contactInitials" class="profileIcon">GS</p>
 				<p id="contactFullName" class="fullName">Giullya Santos</p>
-
-
+				
 			</div>
-
 
 			<button type="button" id="deleteButton" class="contactPageButtons"><i class="fa fa-trash"></i></button>
 			<button type="button" id="editButton" class="contactPageButtons">Edit</button>
 			<button type="button" id="newButton" onclick="openNewContactBox()" class="contactPageButtons"><i class="fa fa-plus"></i></button>
 			<span id="contactAddResult"></span>
 
-
-
-
-
 		</div>
 
 		<!--Create new user pop up-->
-		<div id="newContact">
-			<button type="button" id="exitNewContact" onclick="closeNewContactBox(); clearNewContactFields()">X</button>
+		<div id="newContactPopup">
+
 			<h1 id="newContactHeader">Enter New Contact Information</h1>
 			<input type="text" id="firstName" placeholder="First Name"><br/>
-			<input type="text" id="lastName" placeholder="Lase Name"><br/>
+			<input type="text" id="lastName" placeholder="Last Name"><br/>
 			<input type="text" id="newEmail" placeholder="Email"><br/>
 			<input type="text" id="newNumber" placeholder="Phone Number"><br/>
-			<button type="submit" id="submitNewContact" onclick="addContacts()">submit</button>
+			<button type="submit" id="submitNewContact" onclick="addContacts()">submit</button><br/>
+			<button type="button" id="exitNewContact" onclick="closeNewContactBox(); clearNewContactFields()">Close</button>
+
 		</div>
-
-
-
-
-
-
 
 	</div>
 </body>
