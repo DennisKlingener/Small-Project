@@ -322,20 +322,49 @@ select{
 }
 
 #contactsContainer {
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch; 
+    justify-content: space-between;
     background-color: transparent;
     margin: 60px;
-    height: calc(100vh - 160px);
+    height: calc(100vh - 160px); 
     backdrop-filter: blur(15px);
-    border-radius: 30px;   
+    border-radius: 7px;
+    padding: 0; 
+    overflow: hidden;
 }
 
 #leftSideDiv {
-    position: absolute;
+    flex: 1; 
     background-color: black;
     opacity: 40%;
-    width: 25%;
-    height: calc(100vh - 160px);
-    margin: 20px;
+    margin-right: 0px; 
+    border-radius: 7px;
+    height: 100%;
+}
+
+/* Styling the scrollbar track */
+#leftSideDiv::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+#leftSideDiv::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+#leftSideDiv::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+#leftSideDiv::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+
+#rightSideDiv {
+    flex: 3; 
+    flex-direction: column;
+    background-color: black;
+    opacity: 60%;
     border-radius: 7px;
 }
 
@@ -345,25 +374,12 @@ select{
     overflow-y: auto;
 }
 
-#rightSideDiv {
-    position: absolute;
-    background-color: black;
-    max-width: calc(100vw - 160px - 25%);
-    max-height: calc(100vh - 160px);
-    margin-top: 20px;
-    margin-left: calc(25% + 20px);
-    width: calc(100vw - 160px - 25%);
-    height: calc(100vh - 160px);
-    border-radius: 7px;
-    opacity: 60%;
-}
-
 #searchBar {
     display: block;
     background-color: black;
     text-align: left;
     height: 40px;
-    width: 310px;
+    width: 85%;
     margin-top: 5%;
     margin-left: auto;  
     margin-right: auto;  
@@ -373,83 +389,159 @@ select{
     color: white;
 }
 
-
-#deleteButton {
-    background-color: #424245;
-    position: absolute;
-    margin-top: calc(100vh - 180px - 40px);
-    margin-left: calc(100vw - 360px - 25% + 10px);
-    border-radius: 7px;
-    opacity: 70%;
-    border: none;
-    color: white;
-}
-
-#editButton {
-    font-family: acumin, sans-serif;
-    background-color: #424245;
-    position: absolute;
-    border-radius: 7px;
-    margin-top: calc(100vh - 180px - 40px);
-    margin-left: calc(100vw - 360px - 25% - 80px);
-    opacity: 70%;
-    border: none;
-    color: white;
-}
-
-#newButton {
-    background-color: #424245;
-    position: absolute;
-    border-radius: 7px;
-    margin-top: calc(100vh - 180px - 40px);
-    margin-left: calc(100vw - 360px - 25% - 825px);
-    opacity: 70%;
-    border: none;
-    color: white;
-    top: ;
+#buttonsDiv{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    top: 37%;
+    width: 100%;
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch; 
+    justify-content: space-between;
+    background-color: transparent;
+    flex-direction: row;
 }
 
 .contactPageButtons {
     height: 40px;
     width: 80px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: #424245;
+    font-family: acumin, sans-serif;
+    border-radius: 7px;
+    opacity: 70%;
+    border: none;
+    color: white;	
 }
 
-.profileIcon{
-    position: fixed;
+#deleteButton {
+    margin-left: 1%;  
+    margin-right: 2%;
+}
+
+#editButton {
+    margin-left: 70%;  
+    margin-right: 0;
+}
+
+#newButton {
+    margin-left: 2%;  
+    margin-right: auto;
+}
+
+.contactPageButtons:hover{
+    opacity: 50%;
+}
+
+.profileIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #424245;
+    margin-top: 10%;
+    margin-left: auto;  
+    margin-right: auto;  
+    border-radius: 50%;
+    color: white;
     width: 80px;
     height: 80px;
-    border-radius: 50%;
     font-size: 25px;
-    color: white;
-    line-height: 80px;
-    text-align: center;
-    background-color: #424245;
     opacity: 70%;
     font-family: acumin;
-    margin-top: 7%;
-    margin-left: 33%;
 }
 
 .fullName{
-    position: fixed;
-    align-content: center;
-    margin-top: 15%;
-    margin-left: 31%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    margin-left: auto;  
+    margin-right: auto;  
     font-size: 20px;
     font-family: acumin;
     text-align: center;
     color: white;
 }
 
-.contactInformation{
-    position: fixed;
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
+.contactWritten{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    font-size: 15px;
+    color: white;
 }
 
+.contactLabel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    font-size: 15px;
+    color: white;
+    opacity: 40%;
+}
+
+.contactInformation{
+    display: flex; 
+    flex-direction: row; 
+    align-items: stretch; 
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    padding: 15px;
+    border: none;
+    background: transparent;
+}
+
+.contactBox{
+    display: flex; 
+    flex-direction: column; 
+    align-items: stretch; 
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    padding: 15px;
+    margin: 1% 0 0 30%;
+    border: none;
+    background: transparent;
+}
+
+.contactLeftList{
+    display: flex;  
+    flex-direction: column; 
+    justify-content: space-between;
+    align-items: left;
+    width: 100%;
+    background: transparent;
+    margin-top: 3%;
+}
+
+.contactButton{
+    width: 100%;
+    padding: 10px;
+    padding-left: 37px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-family: acumin;
+    color: white;
+}
+
+.contactButton:hover{
+    background: white;
+    color: black;
+    opacity: 40%;
+}
+
+.clicked {
+    background: white;
+    color: black;
+    opacity: 40%;
+}
 
 #newContactPopup {
     position: absolute;
@@ -525,22 +617,3 @@ select{
     font-size: 28px;
     font-family: acumin, sans-serif;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
