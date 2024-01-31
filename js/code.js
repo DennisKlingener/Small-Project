@@ -8,6 +8,8 @@ let userData = JSON.parse(localStorage.getItem('userData')) || {
     loginId: 0
 };
 
+let contactList = [];
+
 function doLogin() {
     userData.userId = 0;
     userData.firstName = "";
@@ -205,14 +207,12 @@ function addContacts() {
 }
 
 function searchContacts() {
-    let srch = document.getElementById("searchText").value;
-    document.getElementById("contactSearchResult").innerHTML = "";
-
-    let contactList = "";
+    let srch = document.getElementById("searchBar").value;
+   // document.getElementById("contactSearchResult").innerHTML = "";
 
     let tmp = {
-        searchResults: srch,
-        userId: userData.userId
+          search: "",
+        UserID: userData.userId
     };
     let jsonPayload = JSON.stringify(tmp);
 
@@ -224,23 +224,30 @@ function searchContacts() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+               // document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                    contactList += jsonObject.results[i];
-                    if (i < jsonObject.results.length - 1) {
-                        contactList += "<br />\r\n";
-                    }
-                }
+                   // contactList += jsonObject.results[i];
+                        contactList.push({
+                                         FirstName: jsonObject.results[i].FirstName,
+                                         LastName: jsonObject.results[i].LastName,
+                                         Phone: jsonObject.results[i].Phone,
+                                         Email: jsonObject.results[i].Email});
 
-                document.getElementsByTagName("p")[0].innerHTML = contactList;
+                }
+                    for (let i = 0; i < contactList.length; i++)
+                    {
+                            console.log(contactList[i].FirstName, contactList[i].LastName,contactList[i].Phone,contactList[i].Email);
+                    }
+
+               // document.getElementsByTagName("p")[0].innerHTML = contactList;
             }
         };
         xhr.send(jsonPayload);
     }
     catch (err) {
-        document.getElementById("contactSearchResult").innerHTML = err.message;
+     //   document.getElementById("contactSearchResult").innerHTML = err.message;
     }
 }
 
