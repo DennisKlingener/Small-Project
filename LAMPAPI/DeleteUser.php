@@ -1,7 +1,7 @@
 <?php
     $inData = getRequestInfo();
     $Login = $inData["Login"];
-    $ID = $inData["ID"];
+
 
     // Create database connection
     $conn = new mysqli("localhost", "TheApi", "1verygoodPassword", "COP4331");
@@ -13,10 +13,9 @@
     }
     else
     {
-        // Prepare SQL statement with both login and ID conditions
-        $stmt = $conn->prepare("DELETE FROM Users WHERE Login = ? AND ID = ?");
-        $stmt->bind_param("si", $Login, $ID);
-        
+        $stmt = $conn->prepare("DELETE Users,Contacts FROM Users INNER JOIN Contacts ON Users.ID = Contacts.UserID WHERE Login = ?");
+        $stmt->bind_param("s", $Login);
+
         if($stmt->execute())
         {
             echo json_encode(["message" => "User was deleted"]);
