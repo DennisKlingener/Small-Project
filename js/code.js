@@ -241,6 +241,7 @@ function editContact() {
             }
         };
         xhr.send(jsonPayload);
+        //console.log(jsonPayload);
     } catch (err) {
         document.getElementById("contactAddResult").innerHTML = err.message;
     }
