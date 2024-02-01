@@ -309,3 +309,60 @@ function toggleButton() {
     var button = document.getElementById("contactInfoButton");
     button.classList.toggle("clicked");
 }
+
+// Dynamic table generation.
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Check to see if the webpage is the contacts page.
+    if (document.title === "Contacts Page") {
+
+        // Create the parent table variable and the table body elements.
+        const tableParent = document.createElement("table");
+
+        const tableBody = document.createElement("tbody");
+
+
+        // Here we need an array of either objects containing the information for every contact in a users account.
+
+        
+        // Fill the table with the contact values (this is test values for now)
+        for (let index = 0; index < contactList.length; index++) {
+
+            // Create a table row.
+            const tableRow = document.createElement("tr");
+
+            // Create a cell to go in the row.
+            const rowCell = document.createElement("td");
+
+            // Create a text cell to go in the cell.
+            const cellText = document.createTextNode(contactList[index].FirstName + ' ' + contactList[index].LastName);
+
+            // Appened the text cell to the row cell.
+            rowCell.appendChild(cellText);
+
+            // Append the row cell to the table row.
+            tableRow.appendChild(rowCell);
+
+            // Append the table row to the table body.
+            tableBody.appendChild(tableRow);
+        }
+
+        // After the table has been created, append it to the table parent element
+        tableParent.appendChild(tableBody);
+
+        // Get the correct div to place the table in.
+        const tableDiv = document.getElementById("contactTable");
+
+        // Place the table in the contacts page.
+        tableDiv.append(tableParent);
+
+    }
+});
+
+
+
+
+
+
+
+
