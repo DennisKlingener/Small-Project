@@ -206,6 +206,47 @@ function addContacts() {
     }
 }
 
+//----EDIT CONTACT---
+function editContact() {
+    let contactID = userData.userId; // Replace with logic to get the contact's ID
+    let newFirstName = document.getElementById("newFirstName").value;
+    let newLastName = document.getElementById("newLastName").value;
+    let newEmail = document.getElementById("newEmail").value;
+    let newNumber = document.getElementById("newNumber").value;
+    document.getElementById("contactAddResult").innerHTML = "";
+
+    let tmp = {
+        contactID: contactID, // Include the unique identifier for the contact
+        firstName: newFirstName,
+        lastName: newLastName,
+        Phone: newNumber,
+        Email: newEmail
+    };
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/EditContact.' + extension; 
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    document.getElementById("contactAddResult").innerHTML = "Contact has been updated";
+                } else {
+                    document.getElementById("contactAddResult").innerHTML = "Failed to update contact";
+                }
+            }
+        };
+        xhr.send(jsonPayload);
+    } catch (err) {
+        document.getElementById("contactAddResult").innerHTML = err.message;
+    }
+}
+//---EDIT CONTACT
+
 function searchContacts() {
     let srch = document.getElementById("searchBar").value;
    // document.getElementById("contactSearchResult").innerHTML = "";
