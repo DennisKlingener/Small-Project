@@ -616,3 +616,14 @@ select{
     font-size: 28px;
     font-family: acumin, sans-serif;
 }
+
+#contactTable {
+    color: rgb(255, 255, 255);
+    font-family: acumin;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+
+
