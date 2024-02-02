@@ -2,6 +2,7 @@
     $inData = getRequestInfo();
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
+    $UserID = $inData["UserID"];
 
         // Create database connection
         $conn = new mysqli("localhost", "TheApi", "1verygoodPassword", "COP4331");
@@ -13,8 +14,8 @@
         }
         else
         {
-                $stmt = $conn->prepare("DELETE FROM Contacts WHERE FirstName = ? AND LastName = ?");
-                $stmt->bind_param("ss", $firstName, $lastName);
+                $stmt = $conn->prepare("DELETE FROM Contacts WHERE UserID = ? AND FirstName = ? AND LastName = ?");
+                $stmt->bind_param("sss", $UserID, $firstName, $lastName);
                 if($stmt->execute())
                 {
                   echo json_encode(["message" => "Contact Record was deleted"]);
