@@ -9,6 +9,8 @@ let userData = JSON.parse(localStorage.getItem('userData')) || {
 };
 
 let contactList = [];
+let contactLength = 0;
+
 
 function doLogin() {
     userData.userId = 0;
@@ -206,48 +208,6 @@ function addContacts() {
     }
 }
 
-//----EDIT CONTACT---
-function editContact() {
-    let contactID = userData.userId; // Replace with logic to get the contact's ID
-    let newFirstName = document.getElementById("newFirstName").value;
-    let newLastName = document.getElementById("newLastName").value;
-    let newEmail = document.getElementById("newEmail").value;
-    let newNumber = document.getElementById("newNumber").value;
-    document.getElementById("contactAddResult").innerHTML = "";
-
-    let tmp = {
-        contactID: contactID, // Include the unique identifier for the contact
-        firstName: newFirstName,
-        lastName: newLastName,
-        Phone: newNumber,
-        Email: newEmail
-    };
-    let jsonPayload = JSON.stringify(tmp);
-
-    let url = urlBase + '/EditContact.' + extension; 
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                if (this.status == 200) {
-                    document.getElementById("contactAddResult").innerHTML = "Contact has been updated";
-                } else {
-                    document.getElementById("contactAddResult").innerHTML = "Failed to update contact";
-                }
-            }
-        };
-        xhr.send(jsonPayload);
-        //console.log(jsonPayload);
-    } catch (err) {
-        document.getElementById("contactAddResult").innerHTML = err.message;
-    }
-}
-//---EDIT CONTACT
-
 function searchContacts() {
     let srch = document.getElementById("searchBar").value;
    // document.getElementById("contactSearchResult").innerHTML = "";
@@ -271,19 +231,20 @@ function searchContacts() {
 
                 for (let i = 0; i < jsonObject.results.length; i++) {
                    // contactList += jsonObject.results[i];
-                        contactList.push({
-                                         FirstName: jsonObject.results[i].FirstName,
-                                         LastName: jsonObject.results[i].LastName,
-                                         Phone: jsonObject.results[i].Phone,
-                                         Email: jsonObject.results[i].Email});
-
+			        contactLength++;
+                    contactList.push({
+                        FirstName: jsonObject.results[i].FirstName,
+                        LastName: jsonObject.results[i].LastName,
+                        Phone: jsonObject.results[i].Phone,
+                        Email: jsonObject.results[i].Email});
                 }
                     for (let i = 0; i < contactList.length; i++)
                     {
-                            console.log(contactList[i].FirstName, contactList[i].LastName,contactList[i].Phone,contactList[i].Email);
+                        console.log(contactList[i].FirstName, contactList[i].LastName,contactList[i].Phone,contactList[i].Email);
                     }
 
                // document.getElementsByTagName("p")[0].innerHTML = contactList;
+		    console.log(contactLength);
             }
         };
         xhr.send(jsonPayload);
@@ -352,56 +313,100 @@ function toggleButton() {
     button.classList.toggle("clicked");
 }
 
-// Dynamic table generation.
+
+// dynamic table stuff.
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Check to see if the webpage is the contacts page.
     if (document.title === "Contacts Page") {
 
-        // Create the parent table variable and the table body elements.
-        const tableParent = document.createElement("table");
+        let srch = document.getElementById("searchBar").value;
+        // document.getElementById("contactSearchResult").innerHTML = "";
 
-        const tableBody = document.createElement("tbody");
+        let tmp = {
+            search: "",
+            UserID: userData.userId
+        };
 
+        let jsonPayload = JSON.stringify(tmp);
 
-        // Here we need an array of either objects containing the information for every contact in a users account.
+        let url = urlBase + '/SearchContacts.' + extension;
 
-        
-        // Fill the table with the contact values (this is test values for now)
-        for (let index = 0; index < contactList.length; index++) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        try {
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                // document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+                    let jsonObject = JSON.parse(xhr.responseText);
 
-            // Create a table row.
-            const tableRow = document.createElement("tr");
+                    for (let i = 0; i < jsonObject.results.length; i++) {
+                    // contactList += jsonObject.results[i];
+                        contactLength++;
+                        contactList.push({
+                            FirstName: jsonObject.results[i].FirstName,
+                            LastName: jsonObject.results[i].LastName,
+                            Phone: jsonObject.results[i].Phone,
+                            Email: jsonObject.results[i].Email});
+                    }
+                        
+                    // INIT CONTACT TABLE!
+                    intiContactTable();
 
-            // Create a cell to go in the row.
-            const rowCell = document.createElement("td");
-
-            // Create a text cell to go in the cell.
-            const cellText = document.createTextNode(contactList[index].FirstName + ' ' + contactList[index].LastName);
-
-            // Appened the text cell to the row cell.
-            rowCell.appendChild(cellText);
-
-            // Append the row cell to the table row.
-            tableRow.appendChild(rowCell);
-
-            // Append the table row to the table body.
-            tableBody.appendChild(tableRow);
+                    // document.getElementsByTagName("p")[0].innerHTML = contactList;
+                    console.log("DONE :)");
+                }
+            };
+            xhr.send(jsonPayload);
         }
-
-        // After the table has been created, append it to the table parent element
-        tableParent.appendChild(tableBody);
-
-        // Get the correct div to place the table in.
-        const tableDiv = document.getElementById("contactTable");
-
-        // Place the table in the contacts page.
-        tableDiv.append(tableParent);
-
+        catch (err) {
+        //   document.getElementById("contactSearchResult").innerHTML = err.message;
+        }
     }
 });
 
 
+function intiContactTable () {
+
+    console.log("contactsList: " +  contactLength);
+
+    // Create the parent table variable and the table body elements.
+    const tableParent = document.createElement("table");
+
+    const tableBody = document.createElement("tbody");
+
+    // Fill the table with the contact values (this is test values for now)
+    for (let index = 0; index < contactLength; index++) {
+
+        // Create a table row.
+        const tableRow = document.createElement("tr");
+
+        // Create a cell to go in the row.
+        const rowCell = document.createElement("td");
+
+        // Create a text cell to go in the cell.
+        const cellText = document.createTextNode(contactList[index].FirstName + ' ' + contactList[index].LastName);
+
+        // Appened the text cell to the row cell.
+        rowCell.appendChild(cellText);
+
+        // Append the row cell to the table row.
+        tableRow.appendChild(rowCell);
+
+        // Append the table row to the table body.
+        tableBody.appendChild(tableRow);
+    }
+
+    // After the table has been created, append it to the table parent element
+    tableParent.appendChild(tableBody);
+
+    // Get the correct div to place the table in.
+    const tableDiv = document.getElementById("contactTable");
+
+    // Place the table in the contacts page.
+    tableDiv.append(tableParent);
+    
+}
 
 
 
