@@ -387,6 +387,41 @@ function intiContactTable () {
         // Create a text cell to go in the cell.
         const cellText = document.createTextNode(contactList[index].FirstName + ' ' + contactList[index].LastName);
 
+	// Here we need to add the selectable behaviour for each row.
+        var displayFunction = function(tableRow, index) {
+
+            // this is what will be done when the row is selected?
+            return function() {
+
+                // First get all the elements for the display page.
+                let fullNameElement = document.getElementById('contactFullName');
+                let phoneNumberElement = document.getElementById('contactPhoneNumber');
+                let emailElement = document.getElementById('contactEmail');
+                let contactInitialsElement = document.getElementById('contactInitials');
+
+                // Now we can apply the correct information for this index of the contactlist. 
+                fullNameElement.innerHTML = contactList[index].FirstName + ' ' + contactList[index].LastName;
+                phoneNumberElement.innerHTML = contactList[index].Phone;
+                emailElement.innerHTML = contactList[index].Email;
+                contactInitialsElement.innerHTML = contactList[index].FirstName[0] + contactList[index].LastName[0];
+            };
+        };
+
+        // add the onclick fucntion for this row.
+        tableRow.onclick = displayFunction(tableRow, index);
+
+        // Add some mouse over styling here.
+        tableRow.onmouseover = function() {
+            tableRow.style.backgroundColor = "#039dfc";
+            tableRow.style.color = "#0800ff";
+        };
+
+        // Revert back to default when mouse off.
+        tableRow.onmouseout = function() {
+            tableRow.style.backgroundColor = "";
+            tableRow.style.color = "";
+        };
+
         // Appened the text cell to the row cell.
         rowCell.appendChild(cellText);
 
