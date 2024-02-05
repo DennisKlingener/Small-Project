@@ -79,6 +79,8 @@ function doLogout() {
 
 // Other functions
 
+// Dont need vv
+
 function addColor() {
     let newColor = document.getElementById("colorText").value;
     document.getElementById("colorAddResult").innerHTML = "";
@@ -141,6 +143,8 @@ function searchColor() {
     }
 }
 
+// Dont need ^^
+
 function addUser() {
     let registerLogin = document.getElementById("newUsername").value;
     let registerPassword = document.getElementById("newPassword").value;
@@ -174,6 +178,7 @@ function addUser() {
     }
 }
 
+// Contact add result feature doesnt do anything!
 function addContacts() {
     let newFirstName = document.getElementById("newFirstName").value;
     let newLastName = document.getElementById("newLastName").value;
@@ -198,7 +203,11 @@ function addContacts() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+
                 document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+
+                // add new contact to the users table.
+                updateContactList(newFirstName, newLastName, newEmail, newNumber);
             }
         };
         xhr.send(jsonPayload);
@@ -313,8 +322,7 @@ function toggleButton() {
     button.classList.toggle("clicked");
 }
 
-
-// dynamic table stuff.
+// This waits until the contact.html page is loaded and creates the table full of the users contacts.
 document.addEventListener("DOMContentLoaded", function() {
 
     if (document.title === "Contacts Page") {
@@ -341,7 +349,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     let jsonObject = JSON.parse(xhr.responseText);
 
                     for (let i = 0; i < jsonObject.results.length; i++) {
-                    // contactList += jsonObject.results[i];
                         contactLength++;
                         contactList.push({
                             FirstName: jsonObject.results[i].FirstName,
@@ -352,9 +359,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                     // INIT CONTACT TABLE!
                     intiContactTable();
-
-                    // document.getElementsByTagName("p")[0].innerHTML = contactList;
-                    console.log("DONE :)");
                 }
             };
             xhr.send(jsonPayload);
@@ -365,15 +369,78 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// This functon adds the new contact to the contact list after it is successfully added to the database.
+function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
 
+    // Get the table element from the document.
+    const tableBodyElement = document.getElementById("contactTable");
+
+
+    console.log(newFirstName);
+    console.log(newLastName);
+    console.log(newEmail);
+    console.log(newNumber);
+
+
+    // Create a new table row.
+    const tableRow = document.createElement("tr");
+
+    // Create a cell to go in the row.
+    const rowCell = document.createElement("td");
+
+    // Create a text cell to go in the cell.
+    const cellText = document.createTextNode(newFirstName + ' ' + newLastName);
+
+    // Here we need to add the selectable behaviour for each row.
+    var displayFunction = function(tableRow) {
+
+        // This is what will be done when the row is selected.
+        return function() {
+
+            // First get all the elements for the display page.
+            let fullNameElement = document.getElementById('contactFullName');
+            let phoneNumberElement = document.getElementById('contactPhoneNumber');
+            let emailElement = document.getElementById('contactEmail');
+            let contactInitialsElement = document.getElementById('contactInitials');
+
+            // Now we can apply the correct information for this index of the contactlist. 
+            fullNameElement.innerHTML = newFirstName + ' ' + newLastName;
+            phoneNumberElement.innerHTML = newNumber;
+            emailElement.innerHTML = newEmail;
+            contactInitialsElement.innerHTML = newFirstName[0] + newLastName[0]; // This might not work.....
+        };
+    };
+
+    // Add the onclick fucntion for this row.
+    tableRow.onclick = displayFunction(tableRow);
+
+    // Add some mouse over styling here.
+    tableRow.onmouseover = function() {
+        tableRow.style.backgroundColor = "#039dfc";
+        tableRow.style.color = "#0800ff";
+    };
+
+    // Revert back to default when mouse off.
+    tableRow.onmouseout = function() {
+        tableRow.style.backgroundColor = "";
+        tableRow.style.color = "";
+    };
+
+    // Appened the text cell to the row cell.
+    rowCell.appendChild(cellText);
+
+    // Append the row cell to the table row.
+    tableRow.appendChild(rowCell);
+
+    // Append the table row to the table body.
+    tableBodyElement.appendChild(tableRow);
+}
+
+// Initializes the contact table for the currently logged in user.
 function intiContactTable () {
 
-    console.log("contactsList: " +  contactLength);
-
-    // Create the parent table variable and the table body elements.
-    const tableParent = document.createElement("table");
-
-    const tableBody = document.createElement("tbody");
+    // Get the table element form the document.
+    const tableBodyElement = document.getElementById("contactTable");
 
     // Fill the table with the contact values (this is test values for now)
     for (let index = 0; index < contactLength; index++) {
@@ -387,10 +454,10 @@ function intiContactTable () {
         // Create a text cell to go in the cell.
         const cellText = document.createTextNode(contactList[index].FirstName + ' ' + contactList[index].LastName);
 
-	// Here we need to add the selectable behaviour for each row.
+        // Here we need to add the selectable behaviour for each row.
         var displayFunction = function(tableRow, index) {
 
-            // this is what will be done when the row is selected?
+            // This is what will be done when the row is selected?
             return function() {
 
                 // First get all the elements for the display page.
@@ -407,7 +474,7 @@ function intiContactTable () {
             };
         };
 
-        // add the onclick fucntion for this row.
+        // Add the onclick fucntion for this row.
         tableRow.onclick = displayFunction(tableRow, index);
 
         // Add some mouse over styling here.
@@ -422,6 +489,9 @@ function intiContactTable () {
             tableRow.style.color = "";
         };
 
+        // Cursor styles.
+        tableRow.style.cursor = 'pointer';
+
         // Appened the text cell to the row cell.
         rowCell.appendChild(cellText);
 
@@ -429,22 +499,6 @@ function intiContactTable () {
         tableRow.appendChild(rowCell);
 
         // Append the table row to the table body.
-        tableBody.appendChild(tableRow);
+        tableBodyElement.appendChild(tableRow);
     }
-
-    // After the table has been created, append it to the table parent element
-    tableParent.appendChild(tableBody);
-
-    // Get the correct div to place the table in.
-    const tableDiv = document.getElementById("contactTable");
-
-    // Place the table in the contacts page.
-    tableDiv.append(tableParent);
-    
 }
-
-
-
-
-
-
