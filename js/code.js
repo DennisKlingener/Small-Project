@@ -2,6 +2,7 @@ const urlBase = 'http://techdeckers.xyz/LAMPAPI';
 const extension = 'php';
 let contactList = [];
 let contactLength = 0;
+let globalIndex =0;
 
 
 // NOT SURE WHAT THESE DO OR IF WE NEED THEM//
@@ -100,7 +101,7 @@ function readUserData() {
 
 //------Index Page------//
 
-// Logs a user in 
+// Logs a user in
 function doLogin() {
     userData.userId = 0;
     userData.firstName = "";
@@ -216,7 +217,7 @@ function closeSignUpBox() {
 
 
 
-//------Landing Page------// 
+//------Landing Page------//
 
 // This waits until the contact.html page is loaded and creates the table full of the users contacts.
 document.addEventListener("DOMContentLoaded", function() {
@@ -252,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             Phone: jsonObject.results[i].Phone,
                             Email: jsonObject.results[i].Email});
                     }
-                        
+
                     // INIT CONTACT TABLE!
                     intiContactTable();
                 }
@@ -268,7 +269,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // Initializes the contact table for the currently logged in user.
 function intiContactTable () {
 
-    // Initializes the default contact card. 
+    // Initializes the default contact card.
     initUserContactPage();
 
     // Get the table element form the document.
@@ -297,8 +298,8 @@ function intiContactTable () {
                 let phoneNumberElement = document.getElementById('contactPhoneNumber');
                 let emailElement = document.getElementById('contactEmail');
                 let contactInitialsElement = document.getElementById('contactInitials');
-
-                // Now we can apply the correct information for this index of the contactlist. 
+                globalIndex = index;
+                // Now we can apply the correct information for this index of the contactlist.
                 fullNameElement.innerHTML = contactList[index].FirstName + ' ' + contactList[index].LastName;
                 phoneNumberElement.innerHTML = contactList[index].Phone;
                 emailElement.innerHTML = contactList[index].Email;
@@ -381,7 +382,7 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
             let emailElement = document.getElementById('contactEmail');
             let contactInitialsElement = document.getElementById('contactInitials');
 
-            // Now we can apply the correct information for this index of the contactlist. 
+            // Now we can apply the correct information for this index of the contactlist.
             fullNameElement.innerHTML = newFirstName + ' ' + newLastName;
             phoneNumberElement.innerHTML = newNumber;
             emailElement.innerHTML = newEmail;
@@ -413,6 +414,37 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
     // Append the table row to the table body.
     tableBodyElement.appendChild(tableRow);
 }
+
+// This functon removes the contact that was deleted from contact list after it is successfully deleted to the database.
+function deleteContactList(firstName, lastName) {
+    // Get the table body element from the document.
+    const tableBodyElement = document.getElementById("contactTable");
+
+    // Get all rows in the table body.
+    const rows = tableBodyElement.getElementsByTagName("tr");
+
+    // Loop through each row to find the matching contact.
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const cells = row.getElementsByTagName("td");
+        // Assuming first cell in each row contains full name.
+        const fullName = cells[0].innerText.trim();
+        // Splitting full name into first name and last name.
+        const [existingFirstName, existingLastName] = fullName.split(' ');
+
+        // Check if the current row matches the contact to be deleted.
+        if (existingFirstName === firstName && existingLastName === lastName) {
+            // Remove the row from the table.
+            tableBodyElement.removeChild(row);
+            // Exiting the loop since we found and deleted the contact.
+            return;
+        }
+    }
+
+    // If the loop completes without finding the contact, it means it doesn't exist.
+    console.log(`Contact ${firstName} ${lastName} not found.`);
+}
+
 
 // Adds a new contact to the users account.                             Contact add result feature does not do anything!
 function addContacts() {
@@ -477,7 +509,7 @@ function searchContacts() {
 
                 for (let i = 0; i < jsonObject.results.length; i++) {
                    // contactList += jsonObject.results[i];
-			        contactLength++;
+                                contactLength++;
                     contactList.push({
                         FirstName: jsonObject.results[i].FirstName,
                         LastName: jsonObject.results[i].LastName,
@@ -490,7 +522,7 @@ function searchContacts() {
                     }
 
                // document.getElementsByTagName("p")[0].innerHTML = contactList;
-		    console.log(contactLength);
+                    console.log(contactLength);
             }
         };
         xhr.send(jsonPayload);
@@ -498,6 +530,40 @@ function searchContacts() {
     catch (err) {
      //   document.getElementById("contactSearchResult").innerHTML = err.message;
     }
+}
+
+function deleteContact() {
+    let firstName = contactList[globalIndex].FirstName;
+    let lastName = contactList[globalIndex].LastName
+
+    let tmp = {
+            firstName: firstName,
+            lastName: lastName,
+            UserID: userData.userId
+    };
+        console.log(tmp);
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/DeleteContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try {
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+
+               // Delete contact to the users table
+                 deleteContactList(firstName,lastName);
+                  location.reload();
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch (err) {
+            console.log("Delete did not work");
+    }
+
 }
 
 // Displays the "newContactPopup" div so the new contact info can be entered.
