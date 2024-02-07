@@ -183,16 +183,6 @@ function goToGitHub() {
     window.location.href = 'https://github.com/DennisKlingener/Small-Project.git';
 }
 
-// Makes sure the entered password match.
-function checkPassword() {
-    var input = document.getElementById('psw');
-    if (input.value != document.getElementById('repsw').value) {
-        input.setCustomValidity('Password Must be Matching.');
-    } else {
-        input.setCustomValidity('');
-    }
-}
-
 // Opens the login div.
 function openLoginBox() {
     document.getElementById("loginPopUp").style.display = "block";
@@ -210,10 +200,172 @@ function openSignUpBox() {
     closeLoginBox();
 }
 
+// Checks if all signup conditions are met. if they have been calls addUser(). If not errors are displayed.
+function checkSignUpConditions() {
+
+    // Values to check if all conditions have been met before signing up the new user.
+    let firstNameCheck = false;
+    let lastNameCheck = false;
+    let userNameCheck = false;
+    let passwordCheck = false;
+
+    // First get the fist last and user name elements for the signup.
+    const newFirstName = document.getElementById('newFirstName');
+    const newLastName = document.getElementById('newLastName');
+    const newUserName = document.getElementById('newUsername');
+    const newPassword = document.getElementById('psw');
+    const newPasswordRepeat = document.getElementById('repsw');
+
+    // Check if there is a first name value.
+    if (newFirstName.value.trim() === '') {
+
+        // Display first name error message.
+        firstNameConditionMessage.style.display = 'block';
+
+    } else {
+        firstNameCheck = true;
+    }
+
+    // Check if there is a last name value.
+    if (newLastName.value.trim() === '') {
+
+        // Display last name error message.
+        lastNameConditionMessage.style.display = 'block';
+
+    } else {
+        lastNameCheck = true;
+    }
+
+    // Check if there is a first name value.
+    if (newUserName.value.trim() === '') {
+
+        // Display username error message.
+        userNameConditionMessage.style.display = 'block';
+
+    } else {
+        userNameCheck = true;
+    }
+
+    // Check the password condition.
+    passwordCheck = checkPassword(newPassword, newPasswordRepeat);
+    
+    // Now if all condtions are met we can call add new user.
+    if (firstNameCheck === true && lastNameCheck === true && userNameCheck === true && passwordCheck === true) {
+        addUser();
+    }
+}
+
+// Toggles error messages depending on if its condition has been met.
+function toggleSignUpMessages() {
+
+    // First get the fist last and user name elements for the signup.
+    const newFirstName = document.getElementById('newFirstName');
+    const newLastName = document.getElementById('newLastName');
+    const newUserName = document.getElementById('newUsername');
+    const newPassword = document.getElementById('psw');
+    const newPasswordRepeat = document.getElementById('repsw');
+
+    // Check if there is a first name value.
+    if (newFirstName.value.trim() !== '') {
+
+        // remove first name error message.
+        firstNameConditionMessage.style.display = 'none';
+    }
+
+    // Check if there is a last name value.
+    if (newLastName.value.trim() !== '') {
+
+        // remove last name error message.
+        lastNameConditionMessage.style.display = 'none';
+    }
+
+    // Check if there is a first name value.
+    if (newUserName.value.trim() !== '') {
+
+        // remove username error message.
+        userNameConditionMessage.style.display = 'none';
+    }
+
+    // Check the password condition if there is a input value. Avoids funny behaviour with the error messages.
+    if (newPassword.value.trim() !== '') {
+        checkPassword(newPassword, newPasswordRepeat);
+    }
+}
+
+// Makes sure the entered password match.
+function checkPassword(newPassword, newPasswordRepeat) {
+
+    // Check if there is a password entry.
+    if (newPassword.value.trim() !== '') {
+
+        // Remove password error message.
+        passwordConditionMessage.style.display = 'none';
+
+        // Check to see if the repeated password matches.
+        if (newPasswordRepeat.value.trim() !== newPassword.value.trim()) {
+
+            // Display password must match error message.
+            passwordMatchMessage.style.display = 'block';
+
+            // Condition not met.
+            return false;
+
+        } else {
+
+            // Remove the message if they match.
+            passwordMatchMessage.style.display = 'none';
+
+            // Condition met.
+            return true;
+        }
+        
+    } else {
+
+        // display that password is needed.
+        passwordConditionMessage.style.display = 'block';
+
+        // Condition not met.
+        return false;
+    }
+}
+
 // Closes the sign up div.
 function closeSignUpBox() {
+
+    // First get the elements we need to clear.
+    let newFirstName = document.getElementById('newFirstName');
+    let newLastName = document.getElementById('newLastName');
+    let newUserName = document.getElementById('newUsername');
+    let newPassword = document.getElementById('psw');
+    let newPasswordRepeat = document.getElementById('repsw');
+    
+    // Clear all the input boxes.
+    newFirstName.value = '';
+    newLastName.value = '';
+    newUserName.value = '';
+    newPassword.value = '';
+    newPasswordRepeat.value = '';
+
+    // Close all the error messages.
+    firstNameConditionMessage.style.display = 'none';
+    lastNameConditionMessage.style.display = 'none';
+    userNameConditionMessage.style.display = 'none';
+    passwordConditionMessage.style.display = 'none';
+    passwordMatchMessage.style.display = 'none';
+
+    // Remove the sign up display.
     document.getElementById("signUpPopUp").style.display = "none";
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
