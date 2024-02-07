@@ -554,7 +554,7 @@ select{
     padding-top: 15.5%;
 }
 
-#newFirstName {
+#newContactFirstName {
     position: relative;
     text-align: left;
     width: 200px;
@@ -565,7 +565,7 @@ select{
 
 }
 
-#newLastName {
+#newContactLastName {
     position: relative;
     text-align: left;
     color: #000000;
@@ -575,7 +575,7 @@ select{
     outline: none;
 }
 
-#newEmail {
+#newContactEmail {
     position: relative;
     text-align: center;
     color: #000000;
@@ -585,7 +585,7 @@ select{
     outline: none;
 }
 
-#newNumber {
+#newContactNumber {
     position: relative;
     text-align: center;
     color: #000000;
