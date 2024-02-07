@@ -81,7 +81,7 @@ let userData = JSON.parse(localStorage.getItem('userData')) || {
     userId: 0,
     firstName: "",
     lastName: "",
-    loginId: 0 
+    loginId:0
 };
 
 function saveUserData() {
@@ -348,7 +348,7 @@ function initUserContactPage() {
     const profileIcon = document.getElementById('contactInitials');
     const usersName = document.getElementById('contactFullName');
     const usersNumber = document.getElementById('contactPhoneNumber');
-    const usersEmail = document.getElementById('contactEmail');	
+    const usersEmail = document.getElementById('contactEmail');
 
 
     // Change the innerhtml to the user specific data.
@@ -432,11 +432,11 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
     const tableBodyElement = document.getElementById("contactTable");
 
     contactList.push({
-	    FirstName: newFirstName,
-	    LastName: newLastName,
-	    Phone: newNumber,
-	    Email: newEmail});
-    
+            FirstName: newFirstName,
+            LastName: newLastName,
+            Phone: newNumber,
+            Email: newEmail});
+
     // Create a new table row.
     const tableRow = document.createElement("tr");
 
@@ -515,7 +515,7 @@ function deleteContactList(firstName, lastName) {
 
              // Remove the contact from the contactList array.
             contactList.splice(i, 1);
-            
+
             // Exiting the loop since we found and deleted the contact.
             return;
         }
@@ -569,7 +569,7 @@ function addContacts() {
 // Searchs for a contact.       Need to make this work with the search bar.
 function searchContacts() {
     let srch = document.getElementById("searchBar").value;
-   // document.getElementById("contactSearchResult").innerHTML = "";
+    document.getElementById("contactSearchResult").innerHTML = "";
 
     let tmp = {
           search: "",
@@ -589,21 +589,8 @@ function searchContacts() {
                 let jsonObject = JSON.parse(xhr.responseText);
 
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                   // contactList += jsonObject.results[i];
-                                contactLength++;
-                    contactList.push({
-                        FirstName: jsonObject.results[i].FirstName,
-                        LastName: jsonObject.results[i].LastName,
-                        Phone: jsonObject.results[i].Phone,
-                        Email: jsonObject.results[i].Email});
-                }
-                    for (let i = 0; i < contactList.length; i++)
-                    {
-                        console.log(contactList[i].FirstName, contactList[i].LastName,contactList[i].Phone,contactList[i].Email);
-                    }
-
-               // document.getElementsByTagName("p")[0].innerHTML = contactList;
-                    console.log(contactLength);
+                  //    console.log(jsonObject.results[i]);
+        }
             }
         };
         xhr.send(jsonPayload);
@@ -612,6 +599,7 @@ function searchContacts() {
      //   document.getElementById("contactSearchResult").innerHTML = err.message;
     }
 }
+
 
 function deleteContact() {
     let firstName = contactList[globalIndex].FirstName;
