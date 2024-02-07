@@ -81,7 +81,7 @@ let userData = JSON.parse(localStorage.getItem('userData')) || {
     userId: 0,
     firstName: "",
     lastName: "",
-    loginId: 0
+    loginId: 0, 
 };
 
 function saveUserData() {
@@ -347,11 +347,83 @@ function initUserContactPage() {
     // Get the profile icon and name elements.
     const profileIcon = document.getElementById('contactInitials');
     const usersName = document.getElementById('contactFullName');
+    const usersNumber = document.getElementById('contactPhoneNumber');
+    const usersEmail = document.getElementById('contactEmail');	
+
 
     // Change the innerhtml to the user specific data.
     profileIcon.innerHTML = userData.firstName[0] + userData.lastName[0];
     usersName.innerHTML = userData.firstName + ' ' + userData.lastName;
+    usersNumber.innerHTML = "";
+    usersEmail.innerHTML = "";
 }
+
+// Refreshes the contact table for the currently logged in user.
+function refreshContactTable() {
+    // Get the table body element from the document.
+    const tableBodyElement = document.getElementById("contactTable");
+
+    // Clear existing table contents
+    tableBodyElement.innerHTML = "";
+
+    // Fill the table with the contact values
+    for (let index = 0; index < contactList.length; index++) {
+        // Create a table row.
+        const tableRow = document.createElement("tr");
+
+        // Create a cell to go in the row.
+        const rowCell = document.createElement("td");
+
+        // Create a text node to go in the cell.
+        const cellText = document.createTextNode(contactList[index].FirstName + ' ' + contactList[index].LastName);
+
+        // Here we need to add the selectable behavior for each row.
+        const displayFunction = function(index) {
+            // This is what will be done when the row is selected.
+            return function() {
+                // First get all the elements for the display page.
+                let fullNameElement = document.getElementById('contactFullName');
+                let phoneNumberElement = document.getElementById('contactPhoneNumber');
+                let emailElement = document.getElementById('contactEmail');
+                let contactInitialsElement = document.getElementById('contactInitials');
+                globalIndex = index;
+                // Now we can apply the correct information for this index of the contactlist.
+                fullNameElement.innerHTML = contactList[index].FirstName + ' ' + contactList[index].LastName;
+                phoneNumberElement.innerHTML = contactList[index].Phone;
+                emailElement.innerHTML = contactList[index].Email;
+                contactInitialsElement.innerHTML = contactList[index].FirstName[0] + contactList[index].LastName[0];
+            };
+        };
+
+        // Add the onclick function for this row.
+        tableRow.onclick = displayFunction(index);
+
+        // Add some mouse over styling here.
+        tableRow.onmouseover = function() {
+            tableRow.style.backgroundColor = "#039dfc";
+            tableRow.style.color = "#0800ff";
+        };
+
+        // Revert back to default when mouse off.
+        tableRow.onmouseout = function() {
+            tableRow.style.backgroundColor = "";
+            tableRow.style.color = "";
+        };
+
+        // Cursor styles.
+        tableRow.style.cursor = 'pointer';
+
+        // Append the text node to the row cell.
+        rowCell.appendChild(cellText);
+
+        // Append the row cell to the table row.
+        tableRow.appendChild(rowCell);
+
+        // Append the table row to the table body.
+        tableBodyElement.appendChild(tableRow);
+    }
+}
+
 
 // This functon adds the new contact to the contact list after it is successfully added to the database.
 function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
@@ -359,6 +431,12 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
     // Get the table element from the document.
     const tableBodyElement = document.getElementById("contactTable");
 
+    contactList.push({
+	    FirstName: newFirstName,
+	    LastName: newLastName,
+	    Phone: newNumber,
+	    Email: newEmail});
+    
     // Create a new table row.
     const tableRow = document.createElement("tr");
 
@@ -434,6 +512,10 @@ function deleteContactList(firstName, lastName) {
         if (existingFirstName === firstName && existingLastName === lastName) {
             // Remove the row from the table.
             tableBodyElement.removeChild(row);
+
+             // Remove the contact from the contactList array.
+            contactList.splice(i, 1);
+            
             // Exiting the loop since we found and deleted the contact.
             return;
         }
@@ -474,6 +556,7 @@ function addContacts() {
 
                 // add new contact to the users table.
                 updateContactList(newFirstName, newLastName, newEmail, newNumber);
+                refreshContactTable();
             }
         };
         xhr.send(jsonPayload);
@@ -553,7 +636,8 @@ function deleteContact() {
 
                // Delete contact to the users table
                  deleteContactList(firstName,lastName);
-                  location.reload();
+                 refreshContactTable();
+                 initUserContactPage();
             }
         };
         xhr.send(jsonPayload);
