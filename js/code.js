@@ -191,10 +191,22 @@ function openLoginBox() {
 
 // Closes the login div.
 function closeLoginBox() {
+
+    // get the username, password, and error message lements.
+    let userNameElement = document.getElementById('loginName');
+    let passwordElement = document.getElementById('loginPassword');
+    let errorMessage = document.getElementById('loginResult');
+
+    // Clear the elements
+    userNameElement.value = '';
+    passwordElement.value = '';
+    errorMessage.value = '';
+
+    // Remove the login screen.
     document.getElementById("loginPopUp").style.display = "none";
 }
 
-// Open sthe sign up div.
+// Opens the sign up div.
 function openSignUpBox() {
     document.getElementById("signUpPopUp").style.display = "block";
     closeLoginBox();
