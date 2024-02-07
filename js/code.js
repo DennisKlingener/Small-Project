@@ -200,7 +200,7 @@ function closeLoginBox() {
     // Clear the elements
     userNameElement.value = '';
     passwordElement.value = '';
-    errorMessage.value = '';
+    errorMessage.innerHTML = '';
 
     // Remove the login screen.
     document.getElementById("loginPopUp").style.display = "none";
