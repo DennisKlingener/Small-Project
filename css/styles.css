@@ -624,6 +624,56 @@ select{
     text-align: center;
 }
 
+#firstNameConditionMessage {
+    position: absolute;
+    display: none;
+    background-color: #424245;
+    color: white;
+    width: 200px;
+    top: 127px;
+    margin-left: 80%;
+}
+
+#lastNameConditionMessage {
+    position: absolute;
+    display: none;
+    background-color: #424245;
+    color: white;
+    width: 200px;
+    top: 201px;
+    margin-left: 80%;
+}
+
+#userNameConditionMessage {
+    position: absolute;
+    display: none;
+    background-color: #424245;
+    color: white;
+    width: 200px;
+    top: 275px;
+    margin-left: 80%;
+}
+
+#passwordConditionMessage {
+    position: absolute;
+    display: none;
+    background-color: #424245;
+    color: white;
+    width: 200px;
+    top: 349px;
+    margin-left: 80%;
+}
+
+#passwordMatchMessage {
+    position: absolute;
+    display: none;
+    background-color: #424245;
+    color: white;
+    width: 200px;
+    top: 423px;
+    margin-left: 80%;
+}
+
 
 
 
