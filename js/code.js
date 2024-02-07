@@ -245,17 +245,25 @@ document.addEventListener("DOMContentLoaded", function() {
                 // document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
                     let jsonObject = JSON.parse(xhr.responseText);
 
-                    for (let i = 0; i < jsonObject.results.length; i++) {
-                        contactLength++;
-                        contactList.push({
-                            FirstName: jsonObject.results[i].FirstName,
-                            LastName: jsonObject.results[i].LastName,
-                            Phone: jsonObject.results[i].Phone,
-                            Email: jsonObject.results[i].Email});
+                    // Initializes the default contact card.
+                    initUserContactPage();
+
+                    if (jsonObject.results && jsonObject.results.length > 0) {
+
+                        // Create the contactList array.
+                        for (let i = 0; i < jsonObject.results.length; i++) {
+                            contactLength++;
+                            contactList.push({
+                                FirstName: jsonObject.results[i].FirstName,
+                                LastName: jsonObject.results[i].LastName,
+                                Phone: jsonObject.results[i].Phone,
+                                Email: jsonObject.results[i].Email});
+                        }
+
+                        // INIT CONTACT TABLE!
+                        intiContactTable();
                     }
 
-                    // INIT CONTACT TABLE!
-                    intiContactTable();
                 }
             };
             xhr.send(jsonPayload);
@@ -268,9 +276,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Initializes the contact table for the currently logged in user.
 function intiContactTable () {
-
-    // Initializes the default contact card.
-    initUserContactPage();
 
     // Get the table element form the document.
     const tableBodyElement = document.getElementById("contactTable");
@@ -353,13 +358,6 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
 
     // Get the table element from the document.
     const tableBodyElement = document.getElementById("contactTable");
-
-
-    console.log(newFirstName);
-    console.log(newLastName);
-    console.log(newEmail);
-    console.log(newNumber);
-
 
     // Create a new table row.
     const tableRow = document.createElement("tr");
