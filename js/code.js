@@ -81,7 +81,7 @@ let userData = JSON.parse(localStorage.getItem('userData')) || {
     userId: 0,
     firstName: "",
     lastName: "",
-    loginId: 0, 
+    loginId: 0 
 };
 
 function saveUserData() {
