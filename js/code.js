@@ -147,7 +147,7 @@ function doLogin() {
 // Makes a new user in the database. (Sign up)
 function addUser() {
     let registerLogin = document.getElementById("newUsername").value;
-    let registerPassword = document.getElementById("newPassword").value;
+    let registerPassword = document.getElementById("psw").value;
     let newFirstName = document.getElementById("newFirstName").value;
     let newLastName = document.getElementById("newLastName").value;
     document.getElementById("userAddResult").innerHTML = "";
