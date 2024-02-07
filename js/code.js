@@ -446,10 +446,10 @@ function deleteContactList(firstName, lastName) {
 
 // Adds a new contact to the users account.                             Contact add result feature does not do anything!
 function addContacts() {
-    let newFirstName = document.getElementById("newFirstName").value;
-    let newLastName = document.getElementById("newLastName").value;
-    let newEmail = document.getElementById("newEmail").value;
-    let newNumber = document.getElementById("newNumber").value;
+    let newFirstName = document.getElementById("newContactFirstName").value;
+    let newLastName = document.getElementById("newContactLastName").value;
+    let newEmail = document.getElementById("newContactEmail").value;
+    let newNumber = document.getElementById("newContactNumber").value;
     document.getElementById("contactAddResult").innerHTML = "";
 
     let tmp = {
@@ -578,14 +578,14 @@ function closeNewContactBox() {
 function clearNewContactFields() {
 
     // Get the input fields.
-    var firstName = document.getElementById("newFirstName");
-    var lastName = document.getElementById("newLastName");
-    var newEmail = document.getElementById("newEmail");
-    var newNumber = document.getElementById("newNumber");
+    var firstName = document.getElementById("newContactFirstName");
+    var lastName = document.getElementById("newContactLastName");
+    var newEmail = document.getElementById("newContactEmail");
+    var newNumber = document.getElementById("newContactNumber");
 
     // Clear them.
-    newFirstName.value = '';
-    newLastName.value = '';
+    firstName.value = '';
+    lastName.value = '';
     newEmail.value = '';
     newNumber.value = '';
 }
