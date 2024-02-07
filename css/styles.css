@@ -556,7 +556,7 @@ select{
 
 #newContactFirstName {
     position: relative;
-    text-align: left;
+    text-align: center;
     width: 200px;
     height: 35px;
     margin-top: 10px;
@@ -567,7 +567,7 @@ select{
 
 #newContactLastName {
     position: relative;
-    text-align: left;
+    text-align: center;
     color: #000000;
     width: 200px;
     height: 35px;
