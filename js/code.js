@@ -206,7 +206,7 @@ function closeLoginBox() {
     document.getElementById("loginPopUp").style.display = "none";
 }
 
-// Opens the sign up div.
+// Open sthe sign up div.
 function openSignUpBox() {
     document.getElementById("signUpPopUp").style.display = "block";
     closeLoginBox();
@@ -368,17 +368,6 @@ function closeSignUpBox() {
     // Remove the sign up display.
     document.getElementById("signUpPopUp").style.display = "none";
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 //------Landing Page------//
@@ -588,7 +577,6 @@ function refreshContactTable() {
     }
 }
 
-
 // This functon adds the new contact to the contact list after it is successfully added to the database.
 function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
 
@@ -655,6 +643,19 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
     tableBodyElement.appendChild(tableRow);
 }
 
+function clearContactList() {
+    // Clear the contact list array
+    contactList = [];
+
+    // Get the table body element
+    const tableBodyElement = document.getElementById("contactTable");
+
+    // Remove all rows from the table
+    while (tableBodyElement.firstChild) {
+        tableBodyElement.removeChild(tableBodyElement.firstChild);
+    }
+}
+
 // This functon removes the contact that was deleted from contact list after it is successfully deleted to the database.
 function deleteContactList(firstName, lastName) {
     // Get the table body element from the document.
@@ -688,7 +689,6 @@ function deleteContactList(firstName, lastName) {
     // If the loop completes without finding the contact, it means it doesn't exist.
     console.log(`Contact ${firstName} ${lastName} not found.`);
 }
-
 
 // Adds a new contact to the users account.                             Contact add result feature does not do anything!
 function addContacts() {
@@ -732,7 +732,7 @@ function addContacts() {
 
 // Searchs for a contact.       Need to make this work with the search bar.
 function searchContacts() {
-    let srch = document.getElementById("searchBar").value;
+    let srch = document.getElementById("searchBar").value.toLowerCase();
     document.getElementById("contactSearchResult").innerHTML = "";
 
     let tmp = {
@@ -751,9 +751,15 @@ function searchContacts() {
             if (this.readyState == 4 && this.status == 200) {
                // document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
-
+			clearContactList();
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                  //    console.log(jsonObject.results[i]);
+			let resultString = jsonObject.results[i].FirstName.toString().toLowerCase();
+			let resultStringII = jsonObject.results[i].LastName.toString().toLowerCase();
+                    if (resultString.includes(srch) || resultStringII.includes(srch)) {
+		//		clearContactList();
+				updateContactList(jsonObject.results[i].FirstName,jsonObject.results[i].LastName,jsonObject.results[i].Email,jsonObject.results[i].Phone);
+				refreshContactTable();
+                    }
         }
             }
         };
@@ -763,7 +769,6 @@ function searchContacts() {
      //   document.getElementById("contactSearchResult").innerHTML = err.message;
     }
 }
-
 
 function deleteContact() {
     let firstName = contactList[globalIndex].FirstName;
