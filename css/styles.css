@@ -390,10 +390,10 @@ select{
 }
 
 #buttonsDiv{
-    position: relative;
+    position: fixed;
     bottom: 0;
     left: 0;
-    top: 37%;
+    top: 90%;
     width: 100%;
     display: flex; 
     flex-direction: row; 
@@ -418,18 +418,24 @@ select{
 }
 
 #deleteButton {
-    margin-left: 1%;  
+    position: absolute;
+    margin-left: 92%;  
     margin-right: 2%;
 }
 
 #editButton {
-    margin-left: 70%;  
+    position: absolute;
+    margin-left: 85%;  
     margin-right: 0;
 }
 
 #newButton {
-    margin-left: 2%;  
-    margin-right: auto;
+    position: absolute;
+    margin-left: 27%;  
+}
+
+.contactPageButtons:hover{
+    opacity: 50%;
 }
 
 .contactPageButtons:hover{
