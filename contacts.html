@@ -1,684 +1,83 @@
-/*Setting up fonts*/
-@font-face{
-    font-family: 'adobeFont';
-    src: url('fonts/bebas.ttf') format('truetype');
-}
-
-@font-face{
-    font-family: acumin;
-    src: url('fonts/Acumin-BdPro.otf') format('opentype');
-}
-
-/*Background + Alignment*/
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-
-.background-video{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: -1;
-}
-
-@media(min-aspect-ratio: 16/9){
-    .background-video{
-        width: 100%;
-        height: auto;
-    }
-}
-@media(max-aspect-ratio: 16/9){
-    .background-video{
-        width: auto;
-        height: 100%;
-    }
-}
-
-.centered-square{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-#directoryDiv {
-    font-size: 25px;
-    color: #000000;
-    width: 28%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    opacity: 50%;
-    padding-left: 20px;
-}
-
-
-/*Login or SignUp Popup*/
-.account-popup {
-    display: none;
-    position: fixed;
-    top: 0; 
-    left: 0; 
-    width: 100vw; 
-    height: 100vh;
-    z-index: 9;
-    background: rgba(0, 0, 0, 0.56); 
-    backdrop-filter: blur(15px);
-}
-
-.popup-container {
-    text-align: center;
-    max-width: 300px;
-    padding: 50px;
-    background: transparent;
-    border-radius: 20px;
-    position: relative;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
-}
-
-
-.popup-container input[type=text], .popup-container input[type=password], 
-.popup-container input[type=email], .popup-container input[type=email]{
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-}
-
-.popup-container input[type=text]:focus, .popup-container input[type=password]:focus 
-.popup-container input[type=email]:focus, .popup-container input[type=email]:focus{
-    background-color: #ddd;
-    outline: none;
-}
-
-.popup-container .btn {
-    font-family: acumin, sans-serif;
-    font-size: 13px;
-    color:#000000;
-    letter-spacing: 5px;
-    border-radius: 0px;
-    background-color: #A9EBEC;
-
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
-}
-
-.popup-container .btn:hover {
-    opacity: 50%;
-}
-
-.popup-container h1 {
-    font-family: adobeFont, sans-serif;
-    color: white;
-    align-content: center;
-    font-size: 50px;
-    opacity: 50%;
-    letter-spacing: 10px;
-}
-
-/*Other Options Little Note*/
-.sign-or-login {
-    font-family: acumin;
-    color: yellow;
-    opacity: 0.5;
-    font-size: 12px;
-    padding: 0px;
-    display: inline-block;
-    letter-spacing: 0px;
-}
-
-.sign-or-login .buttons2{
-    color: yellow;
-    font-size: 12px;
-    letter-spacing: 0px;
-    padding: 0px;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-
-
-
-/*LOGGED IN*/
-#loggedInDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
-#accessUIDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
-#inner-title{
-    padding-top: 105px;
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #ffffff;
-}
-
-#signinLink {
-    display: inline-block;
-    font-size: 15px;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #ffffff;
-}
-
-#loginResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 10%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
-#userName{
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
-    text-align: center;
-}
-
-#loginButton {
-    color: #009de4;
-    border-radius: 0%;
-    font-size: 25px;
-}
-
-#logoutButton{
-    width: 20%;
-    margin-left: 40%;
-}
-
-select{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-#colorSearchResult{
-    display: none;
-}
-
-#colorAddResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
-
-
-/*"The Reef" content*/
-.container-index{
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,0);
-    text-align: center;
-   
-}
-.content h1{
-    font-family: adobeFont, sans-serif;
-    padding-left: 110px;
-    font-size: 220px;
-    opacity: 50%;
-    letter-spacing: 100px;
-}
-
-.content h2{
-    font-family: acumin, sans-serif;
-    padding-top: 205px;
-    padding-left: 15px;
-    font-size: 30px;
-    opacity: 50%;
-}
-
-.buttons{
-    font-family: acumin, sans-serif;
-    font-size: 13px;
-    color:#A9EBEC;
-    letter-spacing: 5px;
-    border: none;
-    border-radius: 0px;
-    width: auto;
-    padding: 10px 15px;
-    margin-bottom: 5px;
-    background-color: #000000;
-    opacity: 0.8;
-}
-
-.buttons2 {
-    font-family: acumin, sans-serif;
-    font-size: 13px;
-    color: white;
-    letter-spacing: 5px;
-    border: none;
-    border-radius: 0px;
-    width: auto;
-    padding: 10px 15px;
-    background-color: transparent;
-    opacity: 0.8;
-}
-
-.buttons:hover{
-    opacity: 50%;
-}
-
-.buttons2:hover {
-    opacity: 50%;
-}
-
-
-
-
-
-/*------Contacts Page------*/
-#contactsBody {
-    overflow: hidden;
-}
-
-#contactsContainer {
-    display: flex; 
-    flex-direction: row; 
-    align-items: stretch; 
-    justify-content: space-between;
-    background-color: transparent;
-    margin: 60px;
-    height: calc(100vh - 160px); 
-    backdrop-filter: blur(15px);
-    border-radius: 7px;
-    padding: 0; 
-    overflow: hidden;
-}
-
-#leftSideDiv {
-    flex: 1; 
-    background-color: black;
-    opacity: 60%;
-    margin-right: 0px; 
-    border-radius: 7px;
-    height: 100%;
-}
-
-/* Styling the scrollbar track */
-#leftSideDiv::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-#leftSideDiv::-webkit-scrollbar-thumb {
-    background: #888; 
-}
-#leftSideDiv::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-}
-#leftSideDiv::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-
-#rightSideDiv {
-    flex: 3; 
-    flex-direction: column;
-    background-color: black;
-    opacity: 80%;
-    border-radius: 7px;
-}
-
-/*we can combine this with the "leftsidediv"*/
-.contactsList {
-    height: 200px;
-    overflow-y: auto;
-}
-
-#searchBar {
-    display: block;
-    background-color: black;
-    text-align: left;
-    height: 40px;
-    width: 85%;
-    margin-top: 5%;
-    margin-left: auto;  
-    margin-right: auto;  
-    border-style: solid;
-    border-radius: 7px;
-    border-width: thin thin thin thin;
-    color: white;
-    padding: 10px;
-}
-
-#buttonsDiv{
-    position: relative;
-    bottom: 0;
-    left: 0;
-    top: 37%;
-    width: 100%;
-    display: flex; 
-    flex-direction: row; 
-    align-items: stretch; 
-    justify-content: space-between;
-    background-color: transparent;
-    flex-direction: row;
-}
-
-.contactPageButtons {
-    height: 40px;
-    width: 80px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    background-color: #424245;
-    font-family: acumin, sans-serif;
-    border-radius: 7px;
-    opacity: 70%;
-    border: none;
-    color: white;	
-}
-
-#deleteButton {
-    margin-left: 1%;  
-    margin-right: 2%;
-}
-
-#editButton {
-    margin-left: 70%;  
-    margin-right: 0;
-}
-
-#newButton {
-    margin-left: 2%;  
-    margin-right: auto;
-}
-
-.contactPageButtons:hover{
-    opacity: 50%;
-}
-
-.profileIcon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #424245;
-    margin-top: 10%;
-    margin-left: auto;  
-    margin-right: auto;  
-    border-radius: 50%;
-    color: white;
-    width: 80px;
-    height: 80px;
-    font-size: 25px;
-    opacity: 70%;
-    font-family: acumin;
-}
-
-.fullName{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2%;
-    margin-left: auto;  
-    margin-right: auto;  
-    font-size: 20px;
-    font-family: acumin;
-    text-align: center;
-    color: white;
-}
-
-.contactWritten{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
-    font-size: 15px;
-    color: white;
-}
-
-.contactLabel{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: sans-serif;
-    font-size: 15px;
-    color: white;
-    opacity: 40%;
-}
-
-.contactInformation{
-    display: flex; 
-    flex-direction: row; 
-    align-items: stretch; 
-    justify-content: space-between;
-    align-items: center;
-    width: 70%;
-    padding: 15px;
-    border: none;
-    background: transparent;
-}
-
-.contactBox{
-    display: flex; 
-    flex-direction: column; 
-    align-items: stretch; 
-    justify-content: space-between;
-    align-items: center;
-    width: 40%;
-    padding: 15px;
-    margin: 1% 0 0 30%;
-    border: none;
-    background: transparent;
-}
-
-.contactLeftList{
-    display: flex;  
-    flex-direction: column; 
-    justify-content: space-between;
-    align-items: left;
-    width: 100%;
-    background: transparent;
-    margin-top: 3%;
-}
-
-.contactButton{
-    width: 100%;
-    padding: 10px;
-    padding-left: 37px;
-    border: none;
-    background: transparent;
-    text-align: left;
-    font-family: acumin;
-    color: white;
-}
-
-.contactButton:hover{
-    background: white;
-    color: black;
-    opacity: 40%;
-}
-
-.clicked {
-    background: white;
-    color: black;
-    opacity: 40%;
-}
-
-
-#newContactPopup {
-    position: fixed;
-    display: none;
-    text-align: center;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.56); 
-    backdrop-filter: blur(10000px); 
-    right: -60px;
-    top: -60px;
-    padding-top: 7%;
-}
-
-.newContactInput {
-    padding: 15px;
-    border: none;
-    background: #f1f1f1;
-    position: relative;
-    text-align: left;
-    width: 200px;
-    height: 35px;
-    margin-bottom: 5px;  
-    margin-top: 0px; 
-    color: black;    
-}
-
-label2 {
-    font-family: acumin;
-    position: relative;
-    background-color: transparent;
-    text-align: left;
-    width: 100px;
-    height: 35px;
-    color: white;
-}
-
-.contactBox2 {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    gap: 25px;
-    align-items: center;
-    width: 40%;
-    padding-top: 0.7%;
-    margin: 0 0 0 40%;
-    border: none;
-    background: transparent;
-} 
-
-.addNewButtonsPosition {
-    flex-direction: row;
-}
-
-.addNewButtons {
-    position: relative;	
-    width: auto;
-    background-color: #A9EBEC;
-    font-family: acumin, sans-serif;
-    opacity: 80%;
-    border: none;
-    color: black;
-    margin-bottom: 0.5%;
-    padding: 10px 15px;
-    font-size: 12px;
-}
-
-.addNewButtons:hover{
-    opacity: 40%;
-}
-
-#exitNewContact{
-    background-color: transparent;
-    color: white;
-}
-
-#newContactHeader {
-    position: relative;
-    color: white;
-    font-size: 35px; 
-    font-family: adobeFont, sans-serif;
-}
-
-#contactTable {
-    color: rgb(255, 255, 255);
-    font-family: acumin;
-    font-size: 20px;
-    text-align: left;
-}
-
-#firstNameConditionMessage {
-    position: absolute;
-    display: none;
-    background-color: #424245;
-    color: white;
-    width: 200px;
-    top: 127px;
-    margin-left: 80%;
-}
-
-#lastNameConditionMessage {
-    position: absolute;
-    display: none;
-    background-color: #424245;
-    color: white;
-    width: 200px;
-    top: 201px;
-    margin-left: 80%;
-}
-
-#userNameConditionMessage {
-    position: absolute;
-    display: none;
-    background-color: #424245;
-    color: white;
-    width: 200px;
-    top: 275px;
-    margin-left: 80%;
-}
-
-#passwordConditionMessage {
-    position: absolute;
-    display: none;
-    background-color: #424245;
-    color: white;
-    width: 200px;
-    top: 349px;
-    margin-left: 80%;
-}
-
-#passwordMatchMessage {
-    position: absolute;
-    display: none;
-    background-color: #424245;
-    color: white;
-    width: 200px;
-    top: 423px;
-    margin-left: 80%;
-}
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<title>Contacts Page</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name= "viewport" content= "width-device-width, initial-scale-1.0">
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script type="text/javascript" src="js/code.js"></script>
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body id="contactsBody">
+    <video autoplay loop muted class= "background-video">
+        <source src= "images/OCEAN LOOP.mp4" type="video/mp4">
+    </video>
+        <!--contacts container-->
+        <div id="contactsContainer">
+                <!--left side-->
+                <div id="leftSideDiv" class="contactsList">
+                               <input type="text" id="searchBar" placeholder="Search..." oninput="searchContacts()">
+				<div id="contactSearchResult"></div>
+                                <div class = "contactLeftList">
+                                        <table>
+                                                <tbody id="contactTable">
+                                                        <!-- dynamic list goes here plz no delete -->
+                                                </tbody>
+                                        </table>
+			        </div>                       
+                </div>
+                <!--right side-->
+                <div id="rightSideDiv">
+                        <!-- This is where the selected contact info will be displayed-->
+                        <div class= "rightSideDiv">
+                                <p id="contactInitials" class="profileIcon">GS</p>
+                                <p id="contactFullName" class="fullName">Giullya Santos</p>
+                                <div class = "contactBox">
+				        <div class = "contactInformation">
+                                                <p id="phoneNumberLabel" class="contactLabel">phone number</p>
+                                                <p id="contactPhoneNumber" class="contactWritten">(407) 580-7196</p>
+                                        </div>
+                                        <div class = "contactInformation">
+                                                <p id="emailLabel" class="contactLabel">email</p>
+                                                <p id="contactEmail" class="contactWritten">giullyassantos@gmail.com</p>
+                                        </div>
+                                </div>
+                        </div>
+                        <div id = "buttonsDiv">
+                                <button type="button" id="newButton" onclick="openNewContactBox()" class="contactPageButtons"><i class="fa fa-plus"></i></button>
+                                <button type="button" id="editButton" class="contactPageButtons">Edit</button>
+                                <button type="button" id="deleteButton" onclick="deleteContact()" class="contactPageButtons"><i class="fa fa-trash"></i></button>
+                                <span id="contactAddResult"></span>
+                        </div>
+                </div>
+                <!--Create new user pop up-->
+                <div id="newContactPopup">                    
+			<p id="newContactInitials" class="profileIcon" style="margin-top: 0.5%; margin-bottom: 1%;">?</p>
+                        <label2 id= "newContactHeader">ADD NEW CONTACT</label2>   
+                        <div class = "contactBox2" style= "margin-top: 2%;">
+				<label2 for="newContactFirstName">First Name</label2>
+                       		<input type="text" id="newContactFirstName" class= "newContactInput" placeholder="Ex: John"><br/>
+       			</div>
+ 			<div class = "contactBox2">			
+				<label2 for="newContactLastName">Last Name</label2>
+                        	<input type="text" id="newContactLastName" class= "newContactInput" placeholder="Ex: Smith"><br/>
+      			</div>
+ 			<div class = "contactBox2">			
+				<label2 for="newContactEmail">Email</label2>
+                        	<input type="email" id="newContactEmail" class= "newContactInput" placeholder="Ex: johnsmith@gmail.com"><br/>
+      			</div>
+ 			<div class = "contactBox2" style= "margin-bottom: 2%;">			
+				<label2 for="newContactNumber">Phone Number</label2>
+                        	<input type="text" id="newContactNumber" class= "newContactInput" placeholder="Ex:(123) 456-7890"><br/>
+			</div>
+			<div class = "contactBox2" style= "margin-left: 43%; gap: 15px;">	
+                       		<buttons2 type="button" id="exitNewContact" class= "addNewButtons" onclick="closeNewContactBox(); clearNewContactFields()">CANCEL</buttons2>
+				<buttons2 type="submit" id="submitNewContact" class= "addNewButtons" onclick="addContacts()">ADD CONTACT</buttons2><br/>
+      			</div>
+                </div>
+        </div>
+</body>
+</html>
