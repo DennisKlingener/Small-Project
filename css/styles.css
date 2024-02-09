@@ -434,6 +434,11 @@ select{
     margin-left: 27%;  
 }
 
+#logOutButton {
+    position: absolute;
+    margin-left: 34%;  
+}
+
 .contactPageButtons:hover{
     opacity: 50%;
 }
