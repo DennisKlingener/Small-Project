@@ -33,16 +33,16 @@
                 <div id="rightSideDiv">
                         <!-- This is where the selected contact info will be displayed-->
                         <div class= "rightSideDiv">
-                                <p id="contactInitials" class="profileIcon">GS</p>
-                                <p id="contactFullName" class="fullName">Giullya Santos</p>
+                                <p id="contactInitials" class="profileIcon"></p>
+                                <p id="contactFullName" class="fullName"></p>
                                 <div class = "contactBox">
 				        <div class = "contactInformation">
                                                 <p id="phoneNumberLabel" class="contactLabel">phone number</p>
-                                                <p id="contactPhoneNumber" class="contactWritten">(407) 580-7196</p>
+                                                <p id="contactPhoneNumber" class="contactWritten"></p>
                                         </div>
                                         <div class = "contactInformation">
                                                 <p id="emailLabel" class="contactLabel">email</p>
-                                                <p id="contactEmail" class="contactWritten">giullyassantos@gmail.com</p>
+                                                <p id="contactEmail" class="contactWritten"></p>
                                         </div>
                                 </div>
                         </div>
@@ -50,7 +50,8 @@
                                 <button type="button" id="newButton" onclick="openNewContactBox()" class="contactPageButtons"><i class="fa fa-plus"></i></button>
                                 <button type="button" id="editButton" class="contactPageButtons">Edit</button>
                                 <button type="button" id="deleteButton" onclick="deleteContact()" class="contactPageButtons"><i class="fa fa-trash"></i></button>
-                                <span id="contactAddResult"></span>
+                                <button type="button" id="logOutButton" onclick="doLogout()" class="contactPageButtons">Log Out</button>
+				<span id="contactAddResult"></span>
                         </div>
                 </div>
                 <!--Create new user pop up-->
