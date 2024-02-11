@@ -34,24 +34,28 @@
                         <!-- This is where the selected contact info will be displayed-->
                         <div class= "rightSideDiv">
                                 <p id="contactInitials" class="profileIcon"></p>
-                                <p id="contactFullName" class="fullName"></p>
+                                <div class="fullName">
+                                        <p id="contactFirstName" class="editable"></p>
+                                        <p id="newContactLastName" class="editable"></p>
+                                </div>
                                 <div class = "contactBox">
 				        <div class = "contactInformation">
                                                 <p id="phoneNumberLabel" class="contactLabel">phone number</p>
-                                                <p id="contactPhoneNumber" class="contactWritten"></p>
+                                                <p id="contactPhoneNumber" class="contactWritten editable"></p>
                                         </div>
                                         <div class = "contactInformation">
                                                 <p id="emailLabel" class="contactLabel">email</p>
-                                                <p id="contactEmail" class="contactWritten"></p>
+                                                <p id="contactEmail" class="contactWritten editable"></p>
                                         </div>
                                 </div>
                         </div>
                         <div id = "buttonsDiv">
                                 <button type="button" id="newButton" onclick="openNewContactBox()" class="contactPageButtons"><i class="fa fa-plus"></i></button>
-                                <button type="button" id="editButton" class="contactPageButtons">Edit</button>
+                                <button type="button" id="editButton" class="contactPageButtons" onclick="toggleEdit()">Edit</button>
+                                <button type="button" id="saveButton" class="contactPageButtons" style="display:none;" onclick="saveContent()">Save</button>
                                 <button type="button" id="deleteButton" onclick="deleteContact()" class="contactPageButtons"><i class="fa fa-trash"></i></button>
                                 <button type="button" id="logOutButton" onclick="doLogout()" class="contactPageButtons">Log Out</button>
-				<span id="contactAddResult"></span>
+                                <span id="contactAddResult"></span>
                         </div>
                 </div>
                 <!--Create new user pop up-->
@@ -72,7 +76,7 @@
       			</div>
  			<div class = "contactBox2" style= "margin-bottom: 2%;">			
 				<label2 for="newContactNumber">Phone Number</label2>
-                        	<input type="text" id="newContactNumber" class= "newContactInput" placeholder="Ex:(123) 456-7890"><br/>
+                        	<input type="number" id="newContactNumber" class= "newContactInput" placeholder="Ex:(123) 456-7890"><br/>
 			</div>
 			<div class = "contactBox2" style= "margin-left: 43%; gap: 15px;">	
                        		<buttons2 type="button" id="exitNewContact" class= "addNewButtons" onclick="closeNewContactBox(); clearNewContactFields()">CANCEL</buttons2>
