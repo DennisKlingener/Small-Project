@@ -840,3 +840,41 @@ function doLogout() {
     localStorage.removeItem('userData');
     window.location.href = "index.html";
 }
+
+// Makes fields editable
+function edit(editables){
+    editables = document.querySelectorAll('.editable');
+
+    editables.forEach(function(elem) {
+        var isEditable = elem.getAttribute('contentEditable') === 'true';
+        elem.setAttribute('contentEditable', !isEditable); //if it's 'true', set to 'false', and vice versa
+        elem.classList.toggle('editing', !isEditable); 
+    });
+}
+
+// Makes fields editable
+function toggleEdit() {
+    var editables;
+    edit(editables);
+
+    document.getElementById('editButton').style.display = 'none';
+    document.getElementById('saveButton').style.display = 'inline-block';
+}
+
+// Gets the contect on the fields and saves it, still needs to be sent to database tho
+function saveContent() {
+        var editables;
+    edit(editables);
+
+    document.getElementById('saveButton').style.display = 'none';
+    document.getElementById('editButton').style.display = 'inline-block';
+
+    //saved data is here
+    var updatedFirstName = document.getElementById('contactFirstName').textContent;
+    var updatedLastName = document.getElementById('contactLastName').textContent;
+    var updatedPhone = document.getElementById('contactPhoneNumber').textContent;
+    var updatedEmail = document.getElementById('contactEmail').textContent;
+    
+            
+}
+
