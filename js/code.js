@@ -587,12 +587,13 @@ function refreshContactTable() {
 }
 
 // This functon adds the new contact to the contact list after it is successfully added to the database.
-function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
+function updateContactList(newFirstName, newLastName, newEmail, newNumber,contactId ) {
 
     // Get the table element from the document.
     const tableBodyElement = document.getElementById("contactTable");
 
     contactList.push({
+	    ID: contactId,
             FirstName: newFirstName,
             LastName: newLastName,
             Phone: newNumber,
@@ -725,7 +726,7 @@ function addContacts() {
     let newEmail = document.getElementById("newContactEmail").value;
     let newNumber = document.getElementById("newContactNumber").value;
     document.getElementById("contactAddResult").innerHTML = "";
-	console.log(newNumber);
+
     let tmp = {
         firstName: newFirstName,
         lastName: newLastName,
@@ -734,7 +735,7 @@ function addContacts() {
         UserID: userData.userId
     };
     let jsonPayload = JSON.stringify(tmp);
-//`	console.log(jsonPayload);
+
     let url = urlBase + '/AddContact.' + extension;
 
     let xhr = new XMLHttpRequest();
@@ -743,10 +744,14 @@ function addContacts() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
+                // Parse the response to get the ID of the newly created contact
+                let response = JSON.parse(xhr.responseText);
+                let newContactId = response.id;
 
-                // add new contact to the users table.
-                updateContactList(newFirstName, newLastName, newEmail, newNumber);
+                // Update the contact list and HTML table with the new contact and its ID
+                updateContactList(newFirstName, newLastName, newEmail, newNumber, newContactId);
                 refreshContactTable();
+                initUserContactPage();
             }
         };
         xhr.send(jsonPayload);
@@ -848,6 +853,7 @@ function editContact() {
                     }
                 }
             };
+		console.log(contactList[globalIndex].ID);
             console.log(jsonPayload);
             xhr.send(jsonPayload);
         } catch (err) {
