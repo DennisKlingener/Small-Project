@@ -796,17 +796,22 @@ function searchContacts() {
     }
 }
 
+
 function editContact() {
     let editedFirstName = document.getElementById("displayedFirstName").innerText;
     let editedLastName = document.getElementById("displayedLastName").innerText;
     let editedEmail = document.getElementById("contactEmail").innerText;
     let editedNumber = document.getElementById("contactPhoneNumber").innerText;
-    let contactId = contactList[globalIndex].ID;
-  //    console.log(displayedFirstName);
-//      console.log(editedFirstName)
+    let contactId = 0;
+
+    if (globalIndex !== 0) {
+        contactId = contactList[globalIndex].ID;
+    } else {
+        console.log("Here");
+    }
 
     let editedContact = {
-            ID: contactId,
+        ID: contactId,
         firstName: editedFirstName,
         lastName: editedLastName,
         Phone: editedNumber,
@@ -814,42 +819,43 @@ function editContact() {
     };
     let jsonPayload = JSON.stringify(editedContact);
 
-    if (userData.firstName == editedFirstName || userData.lastName == editedLastName)
-    {
-            console.log(editedFirstName);
-    }
-        else
-    {
+    if (userData.firstName == editedFirstName || userData.lastName == editedLastName) {
+        console.log(editedFirstName);
+        undoEdit();
+        unEdit();
+        refreshContactTable();
+        initUserContactPage();
 
-            let url = urlBase + '/EditContact.' + extension;
-            console.log(editedFirstName);
-            let xhr = new XMLHttpRequest();
-            xhr.open("PUT", url, true);
-            xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-            try {
-                xhr.onreadystatechange = function () {
-                    if (this.readyState == 4) {
-                        if (this.status == 200) {
+
+    } else {
+        let url = urlBase + '/EditContact.' + extension;
+        console.log(editedFirstName);
+        let xhr = new XMLHttpRequest();
+        xhr.open("PUT", url, true);
+        xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        try {
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
                         console.log(editedEmail);
                         editContactList(editedFirstName, editedLastName, editedEmail, editedNumber, contactId);
-//                      updateContactList(editedFirstName, editedLastName, editedEmail, editedNumber);
-                                 refreshContactTable();
-                                initUserContactPage();
-                                undoEdit();
-                                unEdit();
-
-                        } else {
-                           // document.getElementById("contactEditResult").innerHTML = "Failed to edit contact. Error: " + this.responseText;
-                        }
+                        refreshContactTable();
+                        initUserContactPage();
+                        undoEdit();
+                        unEdit();
+                    } else {
+                        // document.getElementById("contactEditResult").innerHTML = "Failed to edit contact. Error: " + this.responseText;
                     }
-                };
-                console.log(jsonPayload);
-                xhr.send(jsonPayload);
-            } catch (err) {
-               // document.getElementById("contactEditResult").innerHTML = err.message;
-            }
+                }
+            };
+            console.log(jsonPayload);
+            xhr.send(jsonPayload);
+        } catch (err) {
+            // document.getElementById("contactEditResult").innerHTML = err.message;
+        }
     }
 }
+
 
 function deleteContact() {
     let firstName = contactList[globalIndex].FirstName;
