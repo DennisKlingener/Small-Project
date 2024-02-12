@@ -888,3 +888,45 @@ function saveContent() {
             
 }
 
+// Makes sure there is a first and last name for the new contact.
+function checkNewContactConditions() {
+
+    // Boolean values for conditions.
+    let firstNameCheck = false;
+    let lastNameCheck = false;
+
+    // Get the values of the new contact first name and new cotact last name.
+    const newFirstName = document.getElementById('newContactFirstName');
+    const newLastName = document.getElementById('newContactLastName');
+
+    // Check if there is any input.
+    if (newFirstName.value.trim() === '') {
+
+        // Dipslay error here
+        document.getElementById('newContactFirstNameCheck').style.display = 'block';
+
+    } else {
+        document.getElementById('newContactFirstNameCheck').style.display = 'none';
+        firstNameCheck = true;
+    }
+        
+    if (newLastName.value.trim() === '') {
+
+        // Dipslay error here
+        document.getElementById('newContactLastNameCheck').style.display = 'block';
+
+    } else {
+        document.getElementById('newContactLastNameCheck').style.display = 'none';
+        lastNameCheck = true;
+    }
+
+    // Here if both conditions are satisfied we can add the new contact.
+    if (firstNameCheck === true && lastNameCheck === true) {
+
+        // Add the new contact, close the new contact box, and clear the input fields.
+        addContacts();
+        closeNewContactBox(); 
+        clearNewContactFields();
+    }
+}
+
