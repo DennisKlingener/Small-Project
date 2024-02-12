@@ -260,7 +260,7 @@ function checkSignUpConditions() {
 
     // Check the password condition.
     passwordCheck = checkPassword(newPassword, newPasswordRepeat);
-
+    
     // Now if all condtions are met we can call add new user.
     if (firstNameCheck === true && lastNameCheck === true && userNameCheck === true && passwordCheck === true) {
         addUser();
@@ -330,7 +330,7 @@ function checkPassword(newPassword, newPasswordRepeat) {
             // Condition met.
             return true;
         }
-
+        
     } else {
 
         // display that password is needed.
@@ -350,7 +350,7 @@ function closeSignUpBox() {
     let newUserName = document.getElementById('newUsername');
     let newPassword = document.getElementById('psw');
     let newPasswordRepeat = document.getElementById('repsw');
-
+    
     // Clear all the input boxes.
     newFirstName.value = '';
     newLastName.value = '';
@@ -407,8 +407,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         for (let i = 0; i < jsonObject.results.length; i++) {
                             contactLength++;
                             contactList.push({
-                                ID: jsonObject.results[i].ID,
-                                FirstName: jsonObject.results[i].FirstName,
+				ID: jsonObject.results[i].ID,    
+				FirstName: jsonObject.results[i].FirstName,
                                 LastName: jsonObject.results[i].LastName,
                                 Phone: jsonObject.results[i].Phone,
                                 Email: jsonObject.results[i].Email});
@@ -625,7 +625,7 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
             lastNameElement.innerHTML = newLastName;
             phoneNumberElement.innerHTML = newNumber;
             emailElement.innerHTML = newEmail;
-            contactInitialsElement.innerHTML = newFirstName[0] + newLastName[0];
+            contactInitialsElement.innerHTML = newFirstName[0] + newLastName[0]; 
         };
     };
 
@@ -679,8 +679,8 @@ function editContactList(firstName, lastName, email, phoneNumber, contactId) {
         contactList[contactIndex].Email = email;
         contactList[contactIndex].Phone = phoneNumber;
     }
-//      updateContactList(firstName, lastName, email, phoneNumber);
-        refreshContactTable();
+//	updateContactList(firstName, lastName, email, phoneNumber);
+	refreshContactTable();    
 }
 
 
@@ -718,14 +718,14 @@ function deleteContactList(firstName, lastName) {
     console.log(`Contact ${firstName} ${lastName} not found.`);
 }
 
-// Adds a new contact to the users account.
+// Adds a new contact to the users account.                             
 function addContacts() {
     let newFirstName = document.getElementById("newContactFirstName").value.trim();
     let newLastName = document.getElementById("newContactLastName").value.trim();
     let newEmail = document.getElementById("newContactEmail").value;
     let newNumber = document.getElementById("newContactNumber").value;
     document.getElementById("contactAddResult").innerHTML = "";
-
+	console.log(newNumber);
     let tmp = {
         firstName: newFirstName,
         lastName: newLastName,
@@ -734,7 +734,7 @@ function addContacts() {
         UserID: userData.userId
     };
     let jsonPayload = JSON.stringify(tmp);
-
+//`	console.log(jsonPayload);
     let url = urlBase + '/AddContact.' + extension;
 
     let xhr = new XMLHttpRequest();
@@ -777,14 +777,14 @@ function searchContacts() {
             if (this.readyState == 4 && this.status == 200) {
                // document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
-                        clearContactList();
+			clearContactList();
                 for (let i = 0; i < jsonObject.results.length; i++) {
-                        let resultString = jsonObject.results[i].FirstName.toString().toLowerCase();
-                        let resultStringII = jsonObject.results[i].LastName.toString().toLowerCase();
+			let resultString = jsonObject.results[i].FirstName.toString().toLowerCase();
+			let resultStringII = jsonObject.results[i].LastName.toString().toLowerCase();
                     if (resultString.includes(srch) || resultStringII.includes(srch)) {
-                //              clearContactList();
-                                updateContactList(jsonObject.results[i].FirstName,jsonObject.results[i].LastName,jsonObject.results[i].Email,jsonObject.results[i].Phone);
-                                refreshContactTable();
+		//		clearContactList();
+				updateContactList(jsonObject.results[i].FirstName,jsonObject.results[i].LastName,jsonObject.results[i].Email,jsonObject.results[i].Phone);
+				refreshContactTable();
                     }
         }
             }
@@ -796,38 +796,38 @@ function searchContacts() {
     }
 }
 
+function allowEdit()
+{
+	let disFirstName  = document.getElementById("displayedFirstName").innerText;
+	let disLastName = document.getElementById("displayedLastName").innerText;
+
+	 if (userData.firstName == disFirstName &&  userData.lastName == disLastName)
+	{
+		console.log("Can't update user");
+	}
+	else
+	{
+		toggleEdit();
+	}
+}
 
 function editContact() {
     let editedFirstName = document.getElementById("displayedFirstName").innerText;
     let editedLastName = document.getElementById("displayedLastName").innerText;
     let editedEmail = document.getElementById("contactEmail").innerText;
     let editedNumber = document.getElementById("contactPhoneNumber").innerText;
-    let contactId = 0;
 
-    if (globalIndex !== 0) {
-        contactId = contactList[globalIndex].ID;
-    } else {
-        console.log("Here");
-    }
-
-    let editedContact = {
-        ID: contactId,
+		 let editedContact = {
+        ID: contactList[globalIndex].ID,
         firstName: editedFirstName,
         lastName: editedLastName,
         Phone: editedNumber,
         Email: editedEmail,
-    };
-    let jsonPayload = JSON.stringify(editedContact);
+	    };
 
-    if (userData.firstName == editedFirstName || userData.lastName == editedLastName) {
-        console.log(editedFirstName);
-        undoEdit();
-        unEdit();
-        refreshContactTable();
-        initUserContactPage();
+	    let jsonPayload = JSON.stringify(editedContact);
 
 
-    } else {
         let url = urlBase + '/EditContact.' + extension;
         console.log(editedFirstName);
         let xhr = new XMLHttpRequest();
@@ -838,7 +838,7 @@ function editContact() {
                 if (this.readyState == 4) {
                     if (this.status == 200) {
                         console.log(editedEmail);
-                        editContactList(editedFirstName, editedLastName, editedEmail, editedNumber, contactId);
+                        editContactList(editedFirstName, editedLastName, editedEmail, editedNumber,contactList[globalIndex].ID);
                         refreshContactTable();
                         initUserContactPage();
                         undoEdit();
@@ -853,7 +853,7 @@ function editContact() {
         } catch (err) {
             // document.getElementById("contactEditResult").innerHTML = err.message;
         }
-    }
+
 }
 
 
@@ -935,14 +935,14 @@ function edit(editables){
     editables.forEach(function(elem) {
         var isEditable = elem.getAttribute('contentEditable') === 'true';
         elem.setAttribute('contentEditable', !isEditable); //if it's 'true', set to 'false', and vice versa
-        elem.classList.toggle('editing', !isEditable);
+        elem.classList.toggle('editing', !isEditable); 
     });
 }
 
 
-function  unEdit()
+function  unEdit() 
 {
-        var editables = document.querySelectorAll('.editable');
+	var editables = document.querySelectorAll('.editable');
     editables.forEach(function(elem) {
         elem.contentEditable = 'false'; // Set contentEditable to 'false' to make the element uneditable
         elem.style.border = 'none'; // Remove border to indicate that the field is uneditable
@@ -1002,7 +1002,7 @@ function checkNewContactConditions() {
         document.getElementById('newContactFirstNameCheck').style.display = 'none';
         firstNameCheck = true;
     }
-
+        
     if (newLastName.value.trim() === '') {
 
         // Dipslay error here
@@ -1018,7 +1018,7 @@ function checkNewContactConditions() {
 
         // Add the new contact, close the new contact box, and clear the input fields.
         addContacts();
-        closeNewContactBox();
+        closeNewContactBox(); 
         clearNewContactFields();
     }
 }
