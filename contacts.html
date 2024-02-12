@@ -78,6 +78,11 @@
 				<label2 for="newContactNumber">Phone Number</label2>
                         	<input type="number" id="newContactNumber" class= "newContactInput" placeholder="Ex:(123) 456-7890"><br/>
 			</div>
+
+			<!-- For conditional messages -->
+                        <div id="newContactFirstNameCheck">Please Enter A First Name!</div>
+                        <div id="newContactLastNameCheck">Please Enter A Last Name!</div>
+			
 			<div class = "contactBox2" style= "margin-left: 43%; gap: 15px;">	
                        		<buttons2 type="button" id="exitNewContact" class= "addNewButtons" onclick="closeNewContactBox(); clearNewContactFields()">CANCEL</buttons2>
 				<buttons2 type="submit" id="submitNewContact" class= "addNewButtons" onclick="addContacts()">ADD CONTACT</buttons2><br/>
