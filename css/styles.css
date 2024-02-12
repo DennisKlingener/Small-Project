@@ -714,3 +714,8 @@ label2 {
     text-align: center;
     color: white;
 }
+
+#saveButton {
+    margin-left: 70%;  
+    margin-right: 0;
+}
