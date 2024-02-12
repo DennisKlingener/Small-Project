@@ -719,3 +719,24 @@ label2 {
     margin-left: 70%;  
     margin-right: 0;
 }
+
+
+#newContactFirstNameCheck {
+    position: absolute;
+    display: none;
+    background-color: #424245;
+    color: white;
+    width: 200px;
+    top: 283px;
+    margin-left: 65%;
+}
+
+#newContactLastNameCheck {
+    position: absolute;
+    display: none;
+    background-color: #424245;
+    color: white;
+    width: 200px;
+    top: 333px;
+    margin-left: 65%;
+}
