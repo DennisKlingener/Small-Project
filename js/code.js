@@ -452,13 +452,16 @@ function intiContactTable () {
             return function() {
 
                 // First get all the elements for the display page.
-                let fullNameElement = document.getElementById('contactFullName');
+                let firstNameElement = document.getElementById('displayedFirstName');
+                let lastNameElement = document.getElementById('displayedLastName');
                 let phoneNumberElement = document.getElementById('contactPhoneNumber');
                 let emailElement = document.getElementById('contactEmail');
                 let contactInitialsElement = document.getElementById('contactInitials');
                 globalIndex = index;
+
                 // Now we can apply the correct information for this index of the contactlist.
-                fullNameElement.innerHTML = contactList[index].FirstName + ' ' + contactList[index].LastName;
+                firstNameElement.innerHTML = contactList[index].FirstName;
+                lastNameElement.innerHTML = contactList[index].LastName;
                 phoneNumberElement.innerHTML = contactList[index].Phone;
                 emailElement.innerHTML = contactList[index].Email;
                 contactInitialsElement.innerHTML = contactList[index].FirstName[0] + contactList[index].LastName[0];
@@ -499,14 +502,15 @@ function initUserContactPage() {
 
     // Get the profile icon and name elements.
     const profileIcon = document.getElementById('contactInitials');
-    const usersName = document.getElementById('contactFullName');
+    const usersFirstName = document.getElementById('displayedFirstName');
+    const usersLastName = document.getElementById('displayedLastName');
     const usersNumber = document.getElementById('contactPhoneNumber');
     const usersEmail = document.getElementById('contactEmail');
 
-
     // Change the innerhtml to the user specific data.
     profileIcon.innerHTML = userData.firstName[0] + userData.lastName[0];
-    usersName.innerHTML = userData.firstName + ' ' + userData.lastName;
+    usersFirstName.innerHTML = userData.firstName;
+    usersLastName.innerHTML = userData.lastName;
     usersNumber.innerHTML = "";
     usersEmail.innerHTML = "";
 }
@@ -532,16 +536,20 @@ function refreshContactTable() {
 
         // Here we need to add the selectable behavior for each row.
         const displayFunction = function(index) {
+
             // This is what will be done when the row is selected.
             return function() {
                 // First get all the elements for the display page.
-                let fullNameElement = document.getElementById('contactFullName');
+                let firstNameElement = document.getElementById('displayedFirstName');
+                let lastNameElement = document.getElementById('displayedLastName');
                 let phoneNumberElement = document.getElementById('contactPhoneNumber');
                 let emailElement = document.getElementById('contactEmail');
                 let contactInitialsElement = document.getElementById('contactInitials');
                 globalIndex = index;
+
                 // Now we can apply the correct information for this index of the contactlist.
-                fullNameElement.innerHTML = contactList[index].FirstName + ' ' + contactList[index].LastName;
+                firstNameElement.innerHTML = contactList[index].FirstName;
+                lastNameElement.innerHTML = contactList[index].LastName;
                 phoneNumberElement.innerHTML = contactList[index].Phone;
                 emailElement.innerHTML = contactList[index].Email;
                 contactInitialsElement.innerHTML = contactList[index].FirstName[0] + contactList[index].LastName[0];
@@ -605,16 +613,18 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
         return function() {
 
             // First get all the elements for the display page.
-            let fullNameElement = document.getElementById('contactFullName');
+            let firstNameElement = document.getElementById('displayedFirstName');
+                let lastNameElement = document.getElementById('displayedLastName');
             let phoneNumberElement = document.getElementById('contactPhoneNumber');
             let emailElement = document.getElementById('contactEmail');
             let contactInitialsElement = document.getElementById('contactInitials');
 
             // Now we can apply the correct information for this index of the contactlist.
-            fullNameElement.innerHTML = newFirstName + ' ' + newLastName;
+            firstNameElement.innerHTML = newFirstName;
+            lastNameElement.innerHTML = newLastName;
             phoneNumberElement.innerHTML = newNumber;
             emailElement.innerHTML = newEmail;
-            contactInitialsElement.innerHTML = newFirstName[0] + newLastName[0]; // This might not work.....
+            contactInitialsElement.innerHTML = newFirstName[0] + newLastName[0]; 
         };
     };
 
