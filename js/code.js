@@ -260,7 +260,7 @@ function checkSignUpConditions() {
 
     // Check the password condition.
     passwordCheck = checkPassword(newPassword, newPasswordRepeat);
-    
+
     // Now if all condtions are met we can call add new user.
     if (firstNameCheck === true && lastNameCheck === true && userNameCheck === true && passwordCheck === true) {
         addUser();
@@ -330,7 +330,7 @@ function checkPassword(newPassword, newPasswordRepeat) {
             // Condition met.
             return true;
         }
-        
+
     } else {
 
         // display that password is needed.
@@ -350,7 +350,7 @@ function closeSignUpBox() {
     let newUserName = document.getElementById('newUsername');
     let newPassword = document.getElementById('psw');
     let newPasswordRepeat = document.getElementById('repsw');
-    
+
     // Clear all the input boxes.
     newFirstName.value = '';
     newLastName.value = '';
@@ -407,6 +407,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         for (let i = 0; i < jsonObject.results.length; i++) {
                             contactLength++;
                             contactList.push({
+                                ID: jsonObject.results[i].ID,
                                 FirstName: jsonObject.results[i].FirstName,
                                 LastName: jsonObject.results[i].LastName,
                                 Phone: jsonObject.results[i].Phone,
@@ -624,7 +625,7 @@ function updateContactList(newFirstName, newLastName, newEmail, newNumber) {
             lastNameElement.innerHTML = newLastName;
             phoneNumberElement.innerHTML = newNumber;
             emailElement.innerHTML = newEmail;
-            contactInitialsElement.innerHTML = newFirstName[0] + newLastName[0]; 
+            contactInitialsElement.innerHTML = newFirstName[0] + newLastName[0];
         };
     };
 
@@ -666,6 +667,23 @@ function clearContactList() {
     }
 }
 
+
+function editContactList(firstName, lastName, email, phoneNumber, contactId) {
+    // Find the contact in the contactList array with the matching ID
+    const contactIndex = contactList.findIndex(contact => contact.ID === contactId);
+
+    // If the contact with the given ID is found, update its information
+    if (contactIndex !== -1) {
+        contactList[contactIndex].FirstName = firstName;
+        contactList[contactIndex].LastName = lastName;
+        contactList[contactIndex].Email = email;
+        contactList[contactIndex].Phone = phoneNumber;
+    }
+//      updateContactList(firstName, lastName, email, phoneNumber);
+        refreshContactTable();
+}
+
+
 // This functon removes the contact that was deleted from contact list after it is successfully deleted to the database.
 function deleteContactList(firstName, lastName) {
     // Get the table body element from the document.
@@ -700,10 +718,10 @@ function deleteContactList(firstName, lastName) {
     console.log(`Contact ${firstName} ${lastName} not found.`);
 }
 
-// Adds a new contact to the users account.                             Contact add result feature does not do anything!
+// Adds a new contact to the users account.
 function addContacts() {
-    let newFirstName = document.getElementById("newContactFirstName").value;
-    let newLastName = document.getElementById("newContactLastName").value;
+    let newFirstName = document.getElementById("newContactFirstName").value.trim();
+    let newLastName = document.getElementById("newContactLastName").value.trim();
     let newEmail = document.getElementById("newContactEmail").value;
     let newNumber = document.getElementById("newContactNumber").value;
     document.getElementById("contactAddResult").innerHTML = "";
@@ -725,8 +743,6 @@ function addContacts() {
     try {
         xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-
-                document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 
                 // add new contact to the users table.
                 updateContactList(newFirstName, newLastName, newEmail, newNumber);
@@ -761,14 +777,14 @@ function searchContacts() {
             if (this.readyState == 4 && this.status == 200) {
                // document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
                 let jsonObject = JSON.parse(xhr.responseText);
-			clearContactList();
+                        clearContactList();
                 for (let i = 0; i < jsonObject.results.length; i++) {
-			let resultString = jsonObject.results[i].FirstName.toString().toLowerCase();
-			let resultStringII = jsonObject.results[i].LastName.toString().toLowerCase();
+                        let resultString = jsonObject.results[i].FirstName.toString().toLowerCase();
+                        let resultStringII = jsonObject.results[i].LastName.toString().toLowerCase();
                     if (resultString.includes(srch) || resultStringII.includes(srch)) {
-		//		clearContactList();
-				updateContactList(jsonObject.results[i].FirstName,jsonObject.results[i].LastName,jsonObject.results[i].Email,jsonObject.results[i].Phone);
-				refreshContactTable();
+                //              clearContactList();
+                                updateContactList(jsonObject.results[i].FirstName,jsonObject.results[i].LastName,jsonObject.results[i].Email,jsonObject.results[i].Phone);
+                                refreshContactTable();
                     }
         }
             }
@@ -777,6 +793,61 @@ function searchContacts() {
     }
     catch (err) {
      //   document.getElementById("contactSearchResult").innerHTML = err.message;
+    }
+}
+
+function editContact() {
+    let editedFirstName = document.getElementById("displayedFirstName").innerText;
+    let editedLastName = document.getElementById("displayedLastName").innerText;
+    let editedEmail = document.getElementById("contactEmail").innerText;
+    let editedNumber = document.getElementById("contactPhoneNumber").innerText;
+    let contactId = contactList[globalIndex].ID;
+  //    console.log(displayedFirstName);
+//      console.log(editedFirstName)
+
+    let editedContact = {
+            ID: contactId,
+        firstName: editedFirstName,
+        lastName: editedLastName,
+        Phone: editedNumber,
+        Email: editedEmail,
+    };
+    let jsonPayload = JSON.stringify(editedContact);
+
+    if (userData.firstName == editedFirstName || userData.lastName == editedLastName)
+    {
+            console.log(editedFirstName);
+    }
+        else
+    {
+
+            let url = urlBase + '/EditContact.' + extension;
+            console.log(editedFirstName);
+            let xhr = new XMLHttpRequest();
+            xhr.open("PUT", url, true);
+            xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+            try {
+                xhr.onreadystatechange = function () {
+                    if (this.readyState == 4) {
+                        if (this.status == 200) {
+                        console.log(editedEmail);
+                        editContactList(editedFirstName, editedLastName, editedEmail, editedNumber, contactId);
+//                      updateContactList(editedFirstName, editedLastName, editedEmail, editedNumber);
+                                 refreshContactTable();
+                                initUserContactPage();
+                                undoEdit();
+                                unEdit();
+
+                        } else {
+                           // document.getElementById("contactEditResult").innerHTML = "Failed to edit contact. Error: " + this.responseText;
+                        }
+                    }
+                };
+                console.log(jsonPayload);
+                xhr.send(jsonPayload);
+            } catch (err) {
+               // document.getElementById("contactEditResult").innerHTML = err.message;
+            }
     }
 }
 
@@ -858,9 +929,21 @@ function edit(editables){
     editables.forEach(function(elem) {
         var isEditable = elem.getAttribute('contentEditable') === 'true';
         elem.setAttribute('contentEditable', !isEditable); //if it's 'true', set to 'false', and vice versa
-        elem.classList.toggle('editing', !isEditable); 
+        elem.classList.toggle('editing', !isEditable);
     });
 }
+
+
+function  unEdit()
+{
+        var editables = document.querySelectorAll('.editable');
+    editables.forEach(function(elem) {
+        elem.contentEditable = 'false'; // Set contentEditable to 'false' to make the element uneditable
+        elem.style.border = 'none'; // Remove border to indicate that the field is uneditable
+        elem.classList.remove('editing'); // Remove 'editing' class if present
+    });
+}
+
 
 // Makes fields editable
 function toggleEdit() {
@@ -871,9 +954,14 @@ function toggleEdit() {
     document.getElementById('saveButton').style.display = 'inline-block';
 }
 
+function undoEdit() {
+    document.getElementById('editButton').style.display = 'inline-block';
+    document.getElementById('saveButton').style.display = 'none';
+}
+
 // Gets the contect on the fields and saves it, still needs to be sent to database tho
 function saveContent() {
-        var editables;
+    var editables;
     edit(editables);
 
     document.getElementById('saveButton').style.display = 'none';
@@ -884,8 +972,7 @@ function saveContent() {
     var updatedLastName = document.getElementById('contactLastName').textContent;
     var updatedPhone = document.getElementById('contactPhoneNumber').textContent;
     var updatedEmail = document.getElementById('contactEmail').textContent;
-    
-            
+
 }
 
 // Makes sure there is a first and last name for the new contact.
@@ -909,7 +996,7 @@ function checkNewContactConditions() {
         document.getElementById('newContactFirstNameCheck').style.display = 'none';
         firstNameCheck = true;
     }
-        
+
     if (newLastName.value.trim() === '') {
 
         // Dipslay error here
@@ -925,8 +1012,7 @@ function checkNewContactConditions() {
 
         // Add the new contact, close the new contact box, and clear the input fields.
         addContacts();
-        closeNewContactBox(); 
+        closeNewContactBox();
         clearNewContactFields();
     }
 }
-
