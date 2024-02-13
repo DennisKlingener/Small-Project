@@ -429,6 +429,12 @@ select{
     margin-right: 0;
 }
 
+#saveButton{
+    position: absolute;
+    margin-left: 85%;  
+    margin-right: 0;
+}
+
 #newButton {
     position: absolute;
     margin-left: 27%;  
@@ -739,4 +745,17 @@ label2 {
     width: 200px;
     top: 333px;
     margin-left: 65%;
+}
+
+#areYouSure {
+    position: absolute;
+    display: none;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.56); 
+    backdrop-filter: blur(10000px); 
+    right: -60px;
+    top: -60px;
+    padding-top: 7%;
 }
