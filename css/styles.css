@@ -649,51 +649,66 @@ label2 {
 #firstNameConditionMessage {
     position: absolute;
     display: none;
-    background-color: #424245;
-    color: white;
     width: 200px;
     top: 127px;
     margin-left: 80%;
+    font-family: 'adobeFont';
+    font-size: medium;
+    background-color: black;
+    letter-spacing: 2px;
+    color: #A9EBEC;
 }
 
 #lastNameConditionMessage {
     position: absolute;
     display: none;
-    background-color: #424245;
-    color: white;
     width: 200px;
     top: 201px;
     margin-left: 80%;
+    font-family: 'adobeFont';
+    font-size: medium;
+    background-color: black;
+    letter-spacing: 2px;
+    color: #A9EBEC;
 }
 
 #userNameConditionMessage {
     position: absolute;
     display: none;
-    background-color: #424245;
-    color: white;
     width: 200px;
     top: 275px;
     margin-left: 80%;
+    font-family: 'adobeFont';
+    font-size: medium;
+    background-color: black;
+    letter-spacing: 2px;
+    color: #A9EBEC;
 }
 
 #passwordConditionMessage {
     position: absolute;
     display: none;
-    background-color: #424245;
-    color: white;
     width: 200px;
     top: 349px;
     margin-left: 80%;
+    font-family: 'adobeFont';
+    font-size: medium;
+    background-color: black;
+    letter-spacing: 2px;
+    color: #A9EBEC;
 }
 
 #passwordMatchMessage {
     position: absolute;
     display: none;
-    background-color: #424245;
-    color: white;
     width: 200px;
     top: 423px;
     margin-left: 80%;
+    font-family: 'adobeFont';
+    font-size: medium;
+    background-color: black;
+    letter-spacing: 2px;
+    color: #A9EBEC;
 }
 
 .editable[contentEditable="true"] {
