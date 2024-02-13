@@ -1028,3 +1028,14 @@ function checkNewContactConditions() {
         clearNewContactFields();
     }
 }
+
+
+// Hiding and Unhiding "Are you sure" warning
+function showAreYouSure() {
+    document.getElementById("areYouSure").style.display = "block";
+}
+
+function hideAreYouSure() {
+   document.getElementById("areYouSure").style.display = "none";
+}
+
